@@ -4,40 +4,30 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-import com.github.marcosws.core.CTABase;
+import com.github.marcosws.nav.cadastro.CadastroNav;
+import com.github.marcosws.utils.Common;
 
-public class CTA001 implements CTABase {
+public class CTA001{
 
-	@Override
 	@Test
 	public void runTestCase() {
-		// TODO Auto-generated method stub
-		
+		CadastroNav cadastroNav = new CadastroNav();
+		cadastroNav.executaCadastro(this.getClass().getSimpleName());
 	}
 
-	@Override
 	@Before
 	public void startApplication() {
-		// TODO Auto-generated method stub
-		
+		CadastroNav cadastroNav = new CadastroNav();
+		cadastroNav.iniciarCadastro();
 	}
 
-	@Override
 	@After
 	public void endApplication() {
-		// TODO Auto-generated method stub
+		Common common = new Common();
+		common.sleep(5000);
 		
+		CadastroNav cadastroNav = new CadastroNav();
+		cadastroNav.finalizarCadastro();
 	}
-
-
-
-
-	/*
-	 * @Test public void testStart() { DriverFactory.setNavigator(Browser.IE);
-	 * DriverFactory.getDriver().manage().window().maximize();
-	 * DriverFactory.getDriver().get(ContextApp.ADDRESS_PROTO_CAD);
-	 * 
-	 * }
-	 */
 
 }
