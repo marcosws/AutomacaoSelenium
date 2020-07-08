@@ -1,9 +1,10 @@
 package com.github.marcosws.utils;
 
 import java.io.BufferedReader;
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
-import java.io.FileReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.io.UnsupportedEncodingException;
 
 public class Common {
@@ -23,10 +24,15 @@ public class Common {
         BufferedReader in = null;
 
         try {
-			in = new BufferedReader(new FileReader(filePath));
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
+			in = new BufferedReader(new InputStreamReader(new FileInputStream(filePath), "UTF-8"));
+		} catch (UnsupportedEncodingException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		} catch (FileNotFoundException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
 		}
+		
         
 		while(true)
 		{

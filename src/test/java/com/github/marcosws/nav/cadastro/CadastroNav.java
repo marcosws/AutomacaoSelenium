@@ -4,6 +4,7 @@ import com.github.marcosws.base.cadastro.Cadastro;
 import com.github.marcosws.context.ContextApp;
 import com.github.marcosws.core.DriverFactory;
 import com.github.marcosws.core.DriverFactory.Browser;
+import com.github.marcosws.front.cadastro.CadastroFront;
 
 public class CadastroNav {
 	
@@ -23,6 +24,10 @@ public class CadastroNav {
 		
 		Cadastro cadastro = new Cadastro();
 		cadastro.carregaMassa(nomeClasse);
+		
+		CadastroFront cadastroFront = new CadastroFront();
+		cadastroFront.digitaNome(cadastro.getNome());
+		cadastroFront.digitaCpf(cadastro.getCpf());
 		
 		System.out.println(cadastro.isCadastrar());
 		System.out.println(cadastro.isCadastrar());

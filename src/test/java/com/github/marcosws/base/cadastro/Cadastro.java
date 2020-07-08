@@ -65,6 +65,8 @@ public void carregaMassa(String nomeClasseArquivoJson){
 			statusCelular = jsonObject.get("statusCelular").toString();
 			statusEmail = jsonObject.get("statusEmail").toString();
 			
+			
+			System.out.println(System.getProperty("file.encoding"));
 		}
 		catch(NullPointerException e){
 			
