@@ -10,7 +10,7 @@ public class CadastroNav {
 	
 	public void iniciarCadastro() {
 
-		DriverFactory.setNavigator(Browser.CHROME);
+		DriverFactory.setNavigator(Browser.IE);
 		DriverFactory.getDriver().manage().window().maximize();
 		DriverFactory.getDriver().get(ContextApp.ADDRESS_PROTO_CAD);
 
