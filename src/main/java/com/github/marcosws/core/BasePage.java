@@ -59,7 +59,7 @@ public class BasePage {
     	if(highLight) {
 	    	Common common = new Common();
 	    	String script = "arguments[0].setAttribute('style', arguments[1]);";
-	    	String arguments = "color: white; border: 2px solid darkred; text-shadow: 1px 1px red;";
+	    	String arguments = "color: white; border: 2px solid rgb(109,254,48); text-shadow: 1px 1px rgb(48,156,1);";
 	        for (int i = 0; i < 3; i++) {
 	        	this.executeJavaScript(script, webElement, arguments);
 	            common.sleep(150);

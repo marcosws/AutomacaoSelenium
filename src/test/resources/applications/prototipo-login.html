@@ -1,4 +1,7 @@
-<!-- Desenvolvido por: Marcos Willian de Souza Data: 02/07/2020 - http://github.com/marcosws -->
+<!-- Desenvolvido por: Marcos Willian de Souza   -->
+<!-- Data: 02/07/2020   -->
+<!-- Github: http://github.com/marcosws  -->
+<!-- Data da ultima correção 15/09/2020  -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -18,7 +21,9 @@
             height: 80px;
             color:black;
             background-color: chartreuse;
-            border: 1px solid chartreuse;
+            border: 5px solid chartreuse;
+			border-left: none;
+			border-top: none;
         }
         #container{
             background-color: black;
@@ -35,17 +40,26 @@
             border: 1px solid chartreuse;
             color: chartreuse;
         }
+		.teclado:disabled{
+			border-bottom: 5px solid grey;
+			border-right: 5px solid grey;
+		}
+		.teclado:enabled{
+			border-bottom: 5px solid green;
+			border-right: 5px solid green;
+		}
     </style>
     <script language="javascript">
 
-        senha = "";
-        senha_digitada = "";
+        var senha = "";
+        var senha_digitada = "";
+		var qtd_dig = 0;
         
         function gerarSenha(){
 
-            var qtd_senha = document.getElementById('qtd-senha');
-            var gerar_senha = document.getElementById('gerar-senha');
-            var result_senha = document.getElementById('result-senha');
+            let qtd_senha = document.getElementById('qtd-senha');
+            let gerar_senha = document.getElementById('gerar-senha');
+            let result_senha = document.getElementById('result-senha');
 
             if(Number.isInteger(parseInt(qtd_senha.value))){
                 if(verificaNumeroPar(parseInt(qtd_senha.value))){
@@ -57,9 +71,9 @@
                     }
                     else{
                         senha = "";
-                        var n = parseInt(qtd_senha.value);
-                        var i;
-                        var a;
+                        let n = parseInt(qtd_senha.value);
+                        let i;
+                        let a;
                         for(i=1; i<=n; i++){
                             a =  Math.round(Math.random() * 9);
                             senha += a.toString();
@@ -84,12 +98,12 @@
         }
         function gerarSequenciaRandomicaBotoes(){
 
-            var numero = 0;
-            var numger = "";
-            var btnrange = [0,0,0,0,0];
-            var i;
-            var cont = 0;
-            var check = false;
+            let numero = 0;
+            let numger = "";
+            let btnrange = [0,0,0,0,0];
+            let i;
+            let cont = 0;
+            let check = false;
 
             while(true){
                 numero = Math.floor((Math.random() * 5) + 1);
@@ -134,42 +148,76 @@
         }
         function acessar(){
 
-            var senha_str = senha_digitada.replaceAll(" ou ","");
-            var checkSenha = true;
-            console.log(senha_str);
-            var senha_arr = senha_str.substring(0, senha_str.length -1).split(";");
-            for(var i = 0; i < senha.length; i++){
-                if(!senha_arr[i].includes(senha.substr(i, 1))){
-                    checkSenha = false;
-                }
-            }
-            console.log("a senha é: " + senha);
-            if(senha !== ""){
-                if(checkSenha){
-                    alert("Acesso permitido!")
-                }
-                else{
-                    alert("Acesso Negado!");
-                }
-            }
-            else{
-                alert("Acesso Negado!");
-            }
-            senha = "";
-            senha_digitada = "";
+			let senha_str = senha_digitada.replaceAll(" ou ","");
+			let checkSenha = true;
+
+			let senha_arr = senha_str.substring(0, senha_str.length -1).split(";");
+			for(let i = 0; i < senha.length; i++){
+				if(!senha_arr[i].includes(senha.substr(i, 1))){
+					checkSenha = false;
+				}
+			}
+
+			if(senha !== ""){
+				if(checkSenha){
+					alert("Acesso permitido!")
+				}
+				else{
+					alert("Acesso Negado!");
+				}
+			}
+			else{
+				alert("Acesso Negado!");
+			}
+			senha = "";
+			senha_digitada = "";
+			habilitaBotoesTeclado();
+				
         }
         function recuperaBotao(){
+			
+			qtd_dig++;
+			let result_senha = document.getElementById('result-senha').value;
+			if(result_senha.length === 0){
+				qtd_dig = 0;
+				senha = "";
+				senha_digitada = "";
+				alert("Favor gerar sua senha!");
+			}
+			else{
+				
+				var elemento = document.getElementById('virtualkey');
+				elemento.addEventListener('click',recBtn = function(e){
+					var id = e.target.id;
+					if(id !== "btn-entrar"){
+						senha_digitada = senha_digitada + document.getElementById(id).value + ";";
+					}
+					elemento.removeEventListener('click', recBtn);
+				},false);
+					
+				if(qtd_dig >= result_senha.length){
+					qtd_dig = 0;
+					habilitaBotaoEntrar();
+				}
+			}
 
-            var elemento = document.getElementById('virtualkey');
-			elemento.addEventListener('click',recBtn = function(e){
-				var id = e.target.id;
-                if(id !== "btn-entrar"){
-                    senha_digitada = senha_digitada + document.getElementById(id).value + ";";
-                }
-                elemento.removeEventListener('click', recBtn);
-            },false);
-           
         }
+		function habilitaBotaoEntrar(){
+			document.getElementById('btn-entrar').disabled = false;
+			document.getElementById('btn1').disabled = true;
+			document.getElementById('btn2').disabled = true;
+			document.getElementById('btn3').disabled = true;
+			document.getElementById('btn4').disabled = true;
+			document.getElementById('btn5').disabled = true;
+		}
+		function habilitaBotoesTeclado(){
+			document.getElementById('btn-entrar').disabled = true;
+			document.getElementById('btn1').disabled = false;
+			document.getElementById('btn2').disabled = false;
+			document.getElementById('btn3').disabled = false;
+			document.getElementById('btn4').disabled = false;
+			document.getElementById('btn5').disabled = false;
+		}
     </script>
 </head>
 <body onload="gerarSequenciaRandomicaBotoes();">
@@ -180,7 +228,7 @@
             <input type="number" id="qtd-senha" class="dados-senha" min="4" max="12" step="2" value="6" size="12"><br /><br />
             <input type="button" id="gerar-senha" class="dados-senha" value="Gerar Senha" onclick="gerarSenha();" /><br /><br />
             <label class="dados-senha">Sua Senha é:</label><br />
-            <input type="text" id="result-senha" class="dados-senha"/><br />
+            <input type="text" id="result-senha" class="dados-senha" readonly="true"/><br />
             <br />
             <br />
             <table id="virtualkey">
@@ -192,7 +240,7 @@
                 <tr>
                     <td><input type="button" id="btn4" class="teclado" onclick="recuperaBotao();" value="6 ou 7"></td>
                     <td><input type="button" id="btn5" class="teclado" onclick="recuperaBotao();" value="8 ou 9"></td>
-                    <td><input type="button" id="btn-entrar" class="teclado"  value="Entrar" onclick="acessar();"></td>
+                    <td><input type="button" id="btn-entrar" class="teclado"  value="Entrar" onclick="acessar();" disabled></td>
                 </tr>
             </table>
         </form>

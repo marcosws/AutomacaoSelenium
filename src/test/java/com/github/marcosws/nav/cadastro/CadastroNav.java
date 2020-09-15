@@ -10,7 +10,7 @@ public class CadastroNav {
 	
 	public void iniciarCadastro() {
 
-		DriverFactory.setNavigator(Browser.IE);
+		DriverFactory.setNavigator(Browser.CHROME);
 		DriverFactory.getDriver().manage().window().maximize();
 		DriverFactory.getDriver().get(ContextApp.ADDRESS_PROTO_CAD);
 
@@ -26,8 +26,14 @@ public class CadastroNav {
 		cadastro.carregaMassa(nomeClasse);
 		
 		CadastroFront cadastroFront = new CadastroFront();
+		
+		cadastroFront.selecionaPessoaFisica();
+		
 		cadastroFront.digitaNome(cadastro.getNome());
 		cadastroFront.digitaCpf(cadastro.getCpf());
+		cadastroFront.digitaTelefone(cadastro.getTelefone());
+		cadastroFront.digitaCelular(cadastro.getCelular());
+		cadastroFront.digitaEmail(cadastro.getEmail());
 		
 		System.out.println(cadastro.isCadastrar());
 		System.out.println(cadastro.isCadastrar());
