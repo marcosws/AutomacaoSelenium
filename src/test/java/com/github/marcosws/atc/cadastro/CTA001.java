@@ -1,11 +1,10 @@
-package com.github.marcosws.cta.cadastro;
+package com.github.marcosws.atc.cadastro;
 
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
 import com.github.marcosws.nav.cadastro.CadastroNav;
-import com.github.marcosws.utils.Common;
 
 public class CTA001{
 
@@ -23,9 +22,6 @@ public class CTA001{
 
 	@After
 	public void endApplication() {
-		Common common = new Common();
-		common.sleep(5000);
-		
 		CadastroNav cadastroNav = new CadastroNav();
 		cadastroNav.finalizarCadastro();
 	}

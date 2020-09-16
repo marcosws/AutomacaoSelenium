@@ -29,15 +29,37 @@ public class BasePage {
 		webElement.sendKeys(text);
 	}
 	protected void clickElement(Attribute attribute, String value) {
-		WebElement webElement = this.loadElement( attribute, value);
+		WebElement webElement = this.loadElement(attribute, value);
 		this.highLight(webElement);
 		webElement.click();
 	}
-	protected String getTextElement(Attribute attribute, String value) {
-		return value;
-		
+	protected void selectElement(Attribute attribute, String value, boolean checked) {
+		WebElement webElement = this.loadElement(attribute, value);
+		this.highLight(webElement);
+		if(checked != webElement.isSelected()) {
+			webElement.click();
+		}
 	}
-	
+	protected boolean ckeckedElement(Attribute attribute, String value) {
+		WebElement webElement = this.loadElement(attribute, value);
+		this.highLight(webElement);
+		return webElement.isSelected();
+	}
+	protected String getTextElement(Attribute attribute, String value) {
+		WebElement webElement = this.loadElement(attribute, value);
+		this.highLight(webElement);
+		return webElement.getText();
+	}
+	protected String dialogBox(boolean confirm){
+		String textDialogBox = driver.switchTo().alert().getText();
+		if(confirm){
+			driver.switchTo().alert().accept();
+		}
+		else{
+			driver.switchTo().alert().dismiss();
+		}
+		return textDialogBox;
+	}
 	protected boolean waitElement(Attribute attribute, String value) {
 		return highLight;
 		
@@ -76,7 +98,7 @@ public class BasePage {
 		else if(attribute.equals(Attribute.className)){
 			webElement = driver.findElement(By.className(value));
 		}
-		else if(attribute.equals(Attribute.tagName)){
+		else if(attribute.equals(Attribute.xpath)){
 			webElement = driver.findElement(By.xpath(value));
 		}
 		else if(attribute.equals(Attribute.name)){

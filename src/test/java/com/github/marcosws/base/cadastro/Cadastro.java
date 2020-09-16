@@ -16,10 +16,12 @@ public class Cadastro {
 	private String telefone;
 	private String celular;
 	private String email;
-	private String clienteAutorizaIPEmail;
+	private boolean clienteAutorizaIPEmail;
 	
 	private boolean cadastrar;
 	private boolean limpar;
+	private boolean validaMensagem;
+	private String textoMensagem;
 	
 	private String statusNome;
 	private String statusCpf;
@@ -50,12 +52,11 @@ public void carregaMassa(String nomeClasseArquivoJson){
 			telefone = jsonObject.get("telefone").toString();
 			celular = jsonObject.get("celular").toString();
 			email = jsonObject.get("email").toString();
-			clienteAutorizaIPEmail = jsonObject.get("clienteAutorizaIPEmail").toString();
-
+			clienteAutorizaIPEmail = (boolean) jsonObject.get("clienteAutorizaIPEmail");
 			cadastrar = (boolean) jsonObject.get("cadastrar");
 			limpar = (boolean) jsonObject.get("limpar");
-			
-			
+			validaMensagem = (boolean) jsonObject.get("validaMensagem");
+			textoMensagem = jsonObject.get("textoMensagem").toString();
 			statusNome = jsonObject.get("statusNome").toString();
 			statusCpf = jsonObject.get("statusCpf").toString();
 			statusNomeFantasia = jsonObject.get("statusNomeFantasia").toString();
@@ -145,16 +146,16 @@ public void carregaMassa(String nomeClasseArquivoJson){
 		return email;
 	}
 	
-	public void setEmail(String email) {
-		this.email = email;
-	}
-	
-	public String getClienteAutorizaIPEmail() {
+	public boolean isClienteAutorizaIPEmail() {
 		return clienteAutorizaIPEmail;
 	}
-	
-	public void setClienteAutorizaIPEmail(String clienteAutorizaIPEmail) {
+
+	public void setClienteAutorizaIPEmail(boolean clienteAutorizaIPEmail) {
 		this.clienteAutorizaIPEmail = clienteAutorizaIPEmail;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
 	}
 	
 	public boolean isCadastrar() {
@@ -237,4 +238,22 @@ public void carregaMassa(String nomeClasseArquivoJson){
 		this.statusEmail = statusEmail;
 	}
 
+	public String getTextoMensagem() {
+		return textoMensagem;
+	}
+
+	public void setMensagemTitulo(String textoMensagem) {
+		this.textoMensagem = textoMensagem;
+	}
+
+	public boolean isValidaMensagem() {
+		return validaMensagem;
+	}
+
+	public void setValidaMensagem(boolean validaMensagem) {
+		this.validaMensagem = validaMensagem;
+	}
+	
+	
+	
 }
