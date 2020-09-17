@@ -1,11 +1,11 @@
-package com.github.marcosws.front.cadastro;
+package com.github.marcosws.front.cadastrounico;
 
 import com.github.marcosws.core.BasePage;
 import com.github.marcosws.core.DriverFactory;
 
-public class CadastroFront extends BasePage {
+public class CadastroClienteFront extends BasePage {
 	
-	public CadastroFront() {
+	public CadastroClienteFront() {
 		this.setDriver(DriverFactory.getDriver());
 		this.setHighLight(true);
 	}
@@ -45,14 +45,14 @@ public class CadastroFront extends BasePage {
 	 * @author Marcos
 	 */
 	public void digitaNomeFantasia(String nomeFantasia) {
-		this.editElement(Attribute.id, "nomeFantasia", nomeFantasia);
+		this.editElement(Attribute.id, "nome-fantasia", nomeFantasia);
 	}
 	/**
 	 * Digita o Nome no campo texto. 
 	 * @author Marcos
 	 */
 	public void digitaRazaoSocial(String razaoSocial) {
-		this.editElement(Attribute.id, "razaoSocial",  razaoSocial);
+		this.editElement(Attribute.id, "razao-social",  razaoSocial);
 	}
 	/**
 	 * Digita o Nome no campo texto. 

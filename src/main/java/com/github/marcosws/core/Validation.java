@@ -8,10 +8,10 @@ public class Validation {
 			logTest.LogPass("A validação do campo: [" + rotulo + "] passou, o campo está vazio conforme esperado.");
 		}
 		else if(esperado.equals(gerado)){
-			logTest.LogPass("A validação do campo: [" + rotulo + "] passou, esperado: [" + esperado + "] e gerado: [" + gerado +"]");
+			logTest.LogAssert("A validação do campo: [" + rotulo + "] passou, esperado: [" + esperado + "] e gerado: [" + gerado +"]", esperado, gerado);
 		}
 		else{
-			logTest.LogFail("A validação do campo: [" + rotulo + "] falhou, esperado: [" + esperado + "] e gerado: [" + gerado +"]");
+			logTest.LogAssert("A validação do campo: [" + rotulo + "] falhou, esperado: [" + esperado + "] e gerado: [" + gerado +"]", esperado, gerado);
 		}
 	}
 

@@ -1,11 +1,11 @@
-package com.github.marcosws.base.cadastro;
+package com.github.marcosws.base.cadastrounico;
 
 import org.json.simple.JSONObject;
 import org.json.simple.JSONValue;
 
 import com.github.marcosws.utils.Common;
 
-public class Cadastro {
+public class CadastroCliente {
 	
 	private String tipoDeCadastro;
 	private String nome;
@@ -36,7 +36,7 @@ public void carregaMassa(String nomeClasseArquivoJson){
 		
 		Common common = new Common();
 		String json = common.readFile(System.getProperty("user.dir") + 
-				"//src//test//resources//data//cadastro//" + nomeClasseArquivoJson + ".json");
+				"//src//test//resources//data//cadastrounico//" + nomeClasseArquivoJson + ".json");
 		
 		try{
 			
