@@ -20,15 +20,14 @@ public class CadastroNav {
 	
 	public void finalizarCadastro() {
 		
-		Common common = new Common(); // REMOVER APÓS CONSTRUÇÃO
-		common.sleep(7000);           // REMOVER APÓS CONSTRUÇÃO
-		
 		DriverFactory.killDriver();
 	}
 	
 	public void executaCadastro(String nomeClasse) {
 		
 		Cadastro cadastro = new Cadastro();
+		Common common = new Common();
+		
 		cadastro.carregaMassa(nomeClasse);
 		
 		CadastroFront cadastroFront = new CadastroFront();
@@ -42,7 +41,7 @@ public class CadastroNav {
 			cadastroFront.digitaNome(cadastro.getNome());
 			cadastroFront.digitaCpf(cadastro.getCpf());
 		}
-		else if(cadastro.getTipoDeCadastro().equalsIgnoreCase("Pessoa Jur�dica")) {
+		else if(cadastro.getTipoDeCadastro().equalsIgnoreCase("Pessoa Jurídica")) {
 			cadastroFront.selecionaPessoaJuridica();
 			cadastroFront.digitaNomeFantasia(cadastro.getNomeFantasia());
 			cadastroFront.digitaRazaoSocial(cadastro.getRazaoSocial());
@@ -62,9 +61,24 @@ public class CadastroNav {
 				validacao.validaTexto(cadastro.getTextoMensagem(), cadastroFront.validaTextoMensagem(), "Validação Mensagem da Caixa de Dialogo");
 			}
 			
-			/*
-			 * Validação dos Campos
-			 */
+			if(cadastro.getTipoDeCadastro().equals("Pessoa Física")) {
+				validacao.validaTexto(cadastro.getNome(), cadastroFront.validaCampoNome().replace("Nome: ", ""), "");
+				validacao.validaTexto(cadastro.getCpf(), common.removeMask(cadastroFront.validaCampoCpf().replace("CPF: ", "")), "");
+			}
+			else if(cadastro.getTipoDeCadastro().equals("Pessoa Jurídica")){
+				validacao.validaTexto(cadastro.getNomeFantasia(), cadastroFront.validaCampoNomeFantasia(), "");
+				validacao.validaTexto(cadastro.getRazaoSocial(), cadastroFront.validaCampoRazaoSocial(), "");
+				validacao.validaTexto(cadastro.getStatusCnpj(), common.removeMask(cadastroFront.validaCampoCnpj().replace("CNPJ: ", "")), "");
+			}
+			
+			validacao.validaTexto(cadastro.getTelefone(), common.removeMask(cadastroFront.validaCampoTelefone().replace("Telefone: ", "")), "");
+			validacao.validaTexto(cadastro.getCelular(), common.removeMask(cadastroFront.validaCampoCelular().replace("Celular: ", "")), "");
+			validacao.validaTexto(cadastro.getEmail(), cadastroFront.validaCampoEmail().replace("E-mail: ", ""), "");
+		
+			String autorizacao = (cadastro.isClienteAutorizaIPEmail()) ? "Sim" : "Não";
+			validacao.validaTexto(autorizacao, cadastroFront.validaCampoClienteAutorizaEnvioDeInformacoesPorEmail().replace("Cliente autoriza envio de informações por E-mail: ", ""), "");
+			
+			cadastroFront.clicarVoltar();
 			
 		}
 		else if(cadastro.isLimpar()) {

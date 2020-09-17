@@ -1,4 +1,4 @@
-package com.github.marcosws.atc.cadastro;
+package com.github.marcosws.testcase.cadastro;
 
 import org.junit.After;
 import org.junit.Before;
@@ -22,8 +22,8 @@ public class CTA001{
 
 	@After
 	public void endApplication() {
-		CadastroNav cadastroNav = new CadastroNav();
-		cadastroNav.finalizarCadastro();
+	//	CadastroNav cadastroNav = new CadastroNav();
+	//	cadastroNav.finalizarCadastro();
 	}
 
 }

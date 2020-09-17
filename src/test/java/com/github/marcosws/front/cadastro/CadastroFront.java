@@ -103,5 +103,58 @@ public class CadastroFront extends BasePage {
 	public String validaTextoMensagem() {
 		return this.dialogBox(true);
 	}
+	
+	public String validaCampoNome() {
+		return this.getTextElement(Attribute.id, "label-nome");
+	}
+	
+	
+	public String validaCampoCpf() {
+		return this.getTextElement(Attribute.id, "label-cpf");
+	}
+	
+	public String validaCampoNomeFantasia() {
+		return this.getTextElement(Attribute.id, "label-nome-fantasia");
+	}
+	
+	public String validaCampoRazaoSocial() {
+		return this.getTextElement(Attribute.id, "label-razao-social");
+	}
+	
+	public String validaCampoCnpj() {
+		return this.getTextElement(Attribute.id, "label-cnpj");
+	}
+	
+	public String validaCampoTelefone() {
+		return this.getTextElement(Attribute.id, "label-telefone");
+	}
+	
+	public String validaCampoCelular() {
+		return this.getTextElement(Attribute.id, "label-celular");
+	}
+	
+	public String validaCampoEmail() {
+		return this.getTextElement(Attribute.id, "label-email");
+	}
+	
+	public String validaCampoClienteAutorizaEnvioDeInformacoesPorEmail() {
+		return this.getTextElement(Attribute.id, "label-autorizacao");
+	}
+	
+	public void clicarVoltar() {
+		this.clickElement(Attribute.id, "voltar");
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 
 }
