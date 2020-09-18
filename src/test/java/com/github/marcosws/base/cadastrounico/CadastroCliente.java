@@ -35,39 +35,39 @@ public class CadastroCliente {
 public void carregaMassa(String nomeClasseArquivoJson){
 		
 		Common common = new Common();
-		String json = common.readFile(System.getProperty("user.dir") + 
-				"//src//test//resources//data//cadastrounico//" + nomeClasseArquivoJson + ".json");
+		String baseDir = System.getProperty("user.dir");
+		String partialDir = "//src//test//resources//data//cadastrounico//{nomeClass}.json";
+		String json = common.readFile(baseDir.concat(partialDir.replace("{nomeClass}", nomeClasseArquivoJson)));
 		
 		try{
 			
 			Object obj = JSONValue.parse(json);  
 		    JSONObject jsonObject = (JSONObject) obj; 
 		    
-			tipoDeCadastro = jsonObject.get("tipoDeCadastro").toString();
-			nome = jsonObject.get("nome").toString();
-			cpf = jsonObject.get("cpf").toString();
-			nomeFantasia = jsonObject.get("nomeFantasia").toString();
-			razaoSocial = jsonObject.get("razaoSocial").toString();
-			cnpj = jsonObject.get("cnpj").toString();
-			telefone = jsonObject.get("telefone").toString();
-			celular = jsonObject.get("celular").toString();
-			email = jsonObject.get("email").toString();
-			clienteAutorizaIPEmail = (boolean) jsonObject.get("clienteAutorizaIPEmail");
-			cadastrar = (boolean) jsonObject.get("cadastrar");
-			limpar = (boolean) jsonObject.get("limpar");
-			validaMensagem = (boolean) jsonObject.get("validaMensagem");
-			textoMensagem = jsonObject.get("textoMensagem").toString();
-			statusNome = jsonObject.get("statusNome").toString();
-			statusCpf = jsonObject.get("statusCpf").toString();
-			statusNomeFantasia = jsonObject.get("statusNomeFantasia").toString();
-			statusRazaoSocial = jsonObject.get("statusRazaoSocial").toString();
-			statusCnpj = jsonObject.get("statusCnpj").toString();
-			statusTelefone = jsonObject.get("statusTelefone").toString();
-			statusCelular = jsonObject.get("statusCelular").toString();
-			statusEmail = jsonObject.get("statusEmail").toString();
+			this.setTipoDeCadastro(jsonObject.get("tipoDeCadastro").toString());
+			this.setNome(jsonObject.get("nome").toString());
+			this.setCpf(jsonObject.get("cpf").toString());
+			this.setNomeFantasia(jsonObject.get("nomeFantasia").toString());
+			this.setRazaoSocial(jsonObject.get("razaoSocial").toString());
+			this.setCnpj(jsonObject.get("cnpj").toString());
+			this.setTelefone(jsonObject.get("telefone").toString());
+			this.setCelular(jsonObject.get("celular").toString());
+			this.setEmail(jsonObject.get("email").toString());
+			this.setClienteAutorizaIPEmail((boolean) jsonObject.get("clienteAutorizaIPEmail"));
+			this.setCadastrar((boolean) jsonObject.get("cadastrar"));
+			this.setLimpar((boolean) jsonObject.get("limpar"));
+			this.setValidaMensagem((boolean) jsonObject.get("validaMensagem"));
+			this.setTextoMensagem(jsonObject.get("textoMensagem").toString());
+			this.setStatusNome(jsonObject.get("statusNome").toString());
+			this.setStatusCpf(jsonObject.get("statusCpf").toString());
+			this.setStatusNomeFantasia(jsonObject.get("statusNomeFantasia").toString());
+			this.setStatusRazaoSocial(jsonObject.get("statusRazaoSocial").toString());
+			this.setStatusCnpj(jsonObject.get("statusCnpj").toString());
+			this.setStatusTelefone(jsonObject.get("statusTelefone").toString());
+			this.setStatusCelular(jsonObject.get("statusCelular").toString());
+			this.setStatusEmail(jsonObject.get("statusEmail").toString());
 			
-			
-			System.out.println(System.getProperty("file.encoding"));
+			//System.out.println(System.getProperty("file.encoding"));
 		}
 		catch(NullPointerException e){
 			
@@ -242,7 +242,7 @@ public void carregaMassa(String nomeClasseArquivoJson){
 		return textoMensagem;
 	}
 
-	public void setMensagemTitulo(String textoMensagem) {
+	public void setTextoMensagem(String textoMensagem) {
 		this.textoMensagem = textoMensagem;
 	}
 

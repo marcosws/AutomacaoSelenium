@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<massaDados>
+	<nome>George Bush</nome>
+	<endereco>Avenida das Nações Unidas</endereco>
+	<cep>05260000</cep>
+	<profissao>Propietário de Empresa</profissao>
+	<carro>Sim</carro>
+	<moto>Sim</moto>
+	<utilitario>Sim</utilitario>
+	<montadora>Saab</montadora>
+</massaDados>
