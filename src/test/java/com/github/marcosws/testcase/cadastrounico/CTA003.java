@@ -7,7 +7,7 @@ import org.junit.Test;
 import com.github.marcosws.context.cadastrounico.CadastroUnico;
 import com.github.marcosws.nav.cadastrounico.CadastroClienteNav;
 
-public class CTA002 {
+public class CTA003 {
 	
 	@Test
 	public void runTestCase() {

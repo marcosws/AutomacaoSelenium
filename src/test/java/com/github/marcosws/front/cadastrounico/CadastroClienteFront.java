@@ -9,6 +9,12 @@ public class CadastroClienteFront extends BasePage {
 		this.setDriver(DriverFactory.getDriver());
 		this.setHighLight(true);
 	}
+	
+	public void clicaAbaCadastro() {
+		this.clickElement(Attribute.id, "aba-cadastro");
+	}
+	
+	
 	public String validaTitulo() {
 		return this.getTextElement(Attribute.tagName, "h2");
 	}

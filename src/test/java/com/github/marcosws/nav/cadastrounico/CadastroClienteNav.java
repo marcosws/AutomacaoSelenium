@@ -7,16 +7,14 @@ import com.github.marcosws.utils.Common;
 
 public class CadastroClienteNav {
 	
-
-	
 	public void executaCadastroCliente(String nomeClasse) {
 		
 		CadastroCliente cadastroCliente = new CadastroCliente();
+		CadastroClienteFront cadastroClienteFront = new CadastroClienteFront();
 		Common common = new Common();
 		
 		cadastroCliente.carregaMassa(nomeClasse);
-		
-		CadastroClienteFront cadastroClienteFront = new CadastroClienteFront();
+		cadastroClienteFront.clicaAbaCadastro();
 		
 		Validation validacao = new Validation();
 		validacao.validaTexto("Cadastro de Cliente", cadastroClienteFront.validaTitulo(), "Titulo da Tela: Cadastro de Cliente");
@@ -55,24 +53,24 @@ public class CadastroClienteNav {
 			
 			if(cadastroCliente.getTipoDeCadastro().equals("Pessoa Física")) {
 				
-				validacao.validaTexto(cadastroCliente.getNome(), cadastroClienteFront.validaCampoNome().replace("Nome: ", ""), "");
-				validacao.validaTexto(cadastroCliente.getCpf(), common.removeMask(cadastroClienteFront.validaCampoCpf().replace("CPF: ", "")), "");
+				validacao.validaTexto(cadastroCliente.getNome(), cadastroClienteFront.validaCampoNome().replace("Nome: ", ""), "Nome");
+				validacao.validaTexto(cadastroCliente.getCpf(), common.removeMask(cadastroClienteFront.validaCampoCpf().replace("CPF: ", "")), "CPF");
 				
 			}
 			else if(cadastroCliente.getTipoDeCadastro().equals("Pessoa Jurídica")){
 				
-				validacao.validaTexto(cadastroCliente.getNomeFantasia(), cadastroClienteFront.validaCampoNomeFantasia().replace("Nome Fantasia: ", ""), "");
-				validacao.validaTexto(cadastroCliente.getRazaoSocial(), cadastroClienteFront.validaCampoRazaoSocial().replace("Razão Social: ", ""), "");
-				validacao.validaTexto(cadastroCliente.getCnpj(), common.removeMask(cadastroClienteFront.validaCampoCnpj().replace("CNPJ: ", "")), "");
+				validacao.validaTexto(cadastroCliente.getNomeFantasia(), cadastroClienteFront.validaCampoNomeFantasia().replace("Nome Fantasia: ", ""), "Nome Fantasia");
+				validacao.validaTexto(cadastroCliente.getRazaoSocial(), cadastroClienteFront.validaCampoRazaoSocial().replace("Razão Social: ", ""), "Razão Social");
+				validacao.validaTexto(cadastroCliente.getCnpj(), common.removeMask(cadastroClienteFront.validaCampoCnpj().replace("CNPJ: ", "")), "CNPJ");
 				
 			}
 			
-			validacao.validaTexto(cadastroCliente.getTelefone(), common.removeMask(cadastroClienteFront.validaCampoTelefone().replace("Telefone: ", "")), "");
-			validacao.validaTexto(cadastroCliente.getCelular(), common.removeMask(cadastroClienteFront.validaCampoCelular().replace("Celular: ", "")), "");
-			validacao.validaTexto(cadastroCliente.getEmail(), cadastroClienteFront.validaCampoEmail().replace("E-mail: ", ""), "");
+			validacao.validaTexto(cadastroCliente.getTelefone(), common.removeMask(cadastroClienteFront.validaCampoTelefone().replace("Telefone: ", "")), "Telefone");
+			validacao.validaTexto(cadastroCliente.getCelular(), common.removeMask(cadastroClienteFront.validaCampoCelular().replace("Celular: ", "")), "Celular");
+			validacao.validaTexto(cadastroCliente.getEmail(), cadastroClienteFront.validaCampoEmail().replace("E-mail: ", ""), "E-Mail");
 		
 			String autorizacao = (cadastroCliente.isClienteAutorizaIPEmail()) ? "Sim" : "Não";
-			validacao.validaTexto(autorizacao, cadastroClienteFront.validaCampoClienteAutorizaEnvioDeInformacoesPorEmail().replace("Cliente autoriza envio de informações por E-mail: ", ""), "");
+			validacao.validaTexto(autorizacao, cadastroClienteFront.validaCampoClienteAutorizaEnvioDeInformacoesPorEmail().replace("Cliente autoriza envio de informações por E-mail: ", ""), "Cliente autoriza envio de informações por E-mail");
 			
 			cadastroClienteFront.clicarVoltar();
 			

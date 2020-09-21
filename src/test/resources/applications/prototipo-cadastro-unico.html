@@ -110,11 +110,23 @@
 				margin-left: 20px;
 				margin-bottom: 10px;
 			}
-			fieldset{
+			/* fieldset *****************/
+			#rg-tipo-cadastro{
 				width: 300px;
 				margin-left: 20px;
 				border-radius: 10px;
 			}
+			#rg-mensagem-inconsistencia,
+			#rg-mensagem-confirmacao{
+				width: 600px;
+				margin-left: 20px;
+				border-radius: 10px;
+			}
+			legend{
+				margin-left: 10px;
+				margin-bottom 6px;
+			}
+			/* fieldset *****************/
 			#pessoa-fisica{
 				display: block;
 			}
@@ -506,14 +518,22 @@
 				limpaCampos();
 			}
 			function limpaCampos(){
-				document.getElementById('nome').value = "";
-				document.getElementById('cpf').value = "";
-				document.getElementById('telefone').value = "";
-				document.getElementById('celular').value = "";
-				document.getElementById('email').value = "";
-				document.getElementById('nome-fantasia').value = "";
-				document.getElementById('razao-social').value = "";
-				document.getElementById('cnpj').value = "";
+			
+				let limparChecked = document.getElementById('mensagem-limpar').checked;
+				let limpar = true;
+				if(limparChecked){
+					limpar = confirm("Deseja limpar os campos?");
+				}
+				if(limpar){
+					document.getElementById('nome').value = "";
+					document.getElementById('cpf').value = "";
+					document.getElementById('telefone').value = "";
+					document.getElementById('celular').value = "";
+					document.getElementById('email').value = "";
+					document.getElementById('nome-fantasia').value = "";
+					document.getElementById('razao-social').value = "";
+					document.getElementById('cnpj').value = "";
+				}
 			}
 			function limpaStatus(){
 			
@@ -734,7 +754,7 @@
 				<div id="frame1" class="frame">
 					<h2>Cadastro de Cliente</h2>
 					<form id="form-cadastro" class="formulario" method="post" action="prototipo_cadastro.html" onSubmit="return validaForm()">
-						<fieldset class="radiogroup">
+						<fieldset class="radiogroup" id="rg-tipo-cadastro">
 							<legend>Tipo de cadastro:</legend> 
 							<label class="container-radio-button">Pessoa Física
 								<input type="radio" name="tipo" id="cadastro-pf" class="radio-button" onclick="selecionarTipoCadastro();" value="Pessoa Física" checked="true" />
@@ -800,7 +820,7 @@
 				<div id="frame2" class="frame">
 					<h2>Parâmetros do Cadastro</h2>
 					<form id="form-parametros" class="formulario"></form>
-						<fieldset class="radiogroup">
+						<fieldset class="radiogroup" id="rg-mensagem-inconsistencia">
 							<legend>Mensagem de Inconsistência:</legend> 
 							<label class="container-radio-button">Apresentar caixa de dialogo.
 								<input type="radio" name="tipo" id="mensagem-info" class="radio-button" value="Pessoa Física" checked="true" />
@@ -813,10 +833,17 @@
 						</fieldset>
 						<br />
 						<br />
-						<label class="container-checkbox">Apresentar mensagem de confirmação de Cadastro.
-						  <input type="checkbox" id="mensagem-cadastro"/>
-						  <span class="checkmark"></span>
-						</label>
+						<fieldset class="checkboxgroup" id="rg-mensagem-confirmacao">
+						<legend>Mensagens de Confirmação:</legend> 
+							<label class="container-checkbox">Apresentar mensagem de confirmação de Cadastro.
+							  <input type="checkbox" id="mensagem-cadastro"/>
+							  <span class="checkmark"></span>
+							</label>
+							<label class="container-checkbox">Apresentar mensagem de confirmação antes de limpar o campos.
+							  <input type="checkbox" id="mensagem-limpar"/>
+							  <span class="checkmark"></span>
+							</label>
+						</fieldset>
 					</form>	
 				</div>
 			</div>
