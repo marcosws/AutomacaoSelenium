@@ -7,13 +7,8 @@ import org.junit.Test;
 import com.github.marcosws.context.cadastrounico.CadastroUnico;
 import com.github.marcosws.nav.cadastrounico.CadastroClienteNav;
 
-public class CTA003 {
-	
-	/*
-	 CTA003 - Realizar o cadastro de cliente para pessoa física sem parametrização (Apresentar caixa de dialogo) 
-	 omitindo o preenchimento do campo CPF e preenchendo demais campos com dados válidos.
-	 */
-	
+public class CTA017 {
+
 	@Test
 	public void runTestCase() {
 		CadastroClienteNav cadastroClienteNav = new CadastroClienteNav();
@@ -31,5 +26,5 @@ public class CTA003 {
 		CadastroUnico cadastroUnico = new CadastroUnico();
 		cadastroUnico.finalizarCadastroUnico();
 	}
-
+	
 }

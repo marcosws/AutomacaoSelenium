@@ -8,6 +8,11 @@ import com.github.marcosws.context.cadastrounico.CadastroUnico;
 import com.github.marcosws.nav.cadastrounico.CadastroClienteNav;
 
 public class CTA001{
+	
+	/*
+	 CTA001 - Realizar o cadastro de cliente para pessoa física sem parametrização 
+	 (Apresentar caixa de dialogo) preenchendo todos os campos com dados válidos.
+	 */
 
 	@Test
 	public void runTestCase() {

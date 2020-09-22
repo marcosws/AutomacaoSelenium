@@ -7,11 +7,11 @@ import org.junit.Test;
 import com.github.marcosws.context.cadastrounico.CadastroUnico;
 import com.github.marcosws.nav.cadastrounico.CadastroClienteNav;
 
-public class CTA003 {
+public class CTA009 {
 	
 	/*
-	 CTA003 - Realizar o cadastro de cliente para pessoa física sem parametrização (Apresentar caixa de dialogo) 
-	 omitindo o preenchimento do campo CPF e preenchendo demais campos com dados válidos.
+	 CTA009 - Realizar o cadastro de cliente para pessoa física sem parametrização (Apresentar caixa de dialogo) 
+	 preenchendo com um Formato de Telefone inválido e preenchendo demais campos com dados válidos. 
 	 */
 	
 	@Test

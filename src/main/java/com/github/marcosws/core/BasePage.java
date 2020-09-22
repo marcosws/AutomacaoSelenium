@@ -51,6 +51,8 @@ public class BasePage {
 		return webElement.getText();
 	}
 	protected String dialogBox(boolean confirm){
+		Common common = new Common();
+		common.sleep(3000);
 		String textDialogBox = driver.switchTo().alert().getText();
 		if(confirm){
 			driver.switchTo().alert().accept();

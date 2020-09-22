@@ -3,7 +3,7 @@
 <!-- Github: http://github.com/marcosws  -->
 <!-- Data da ultima correção 15/09/2020  -->
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -15,6 +15,7 @@
         h1{
             color: chartreuse;
             margin-left: 20px;
+			font-family: Arial;
         }
         .teclado{
             width: 80px;
@@ -23,13 +24,32 @@
             background-color: chartreuse;
             border: 5px solid chartreuse;
 			border-left: none;
+			border-right: none;
 			border-top: none;
         }
         #container{
             background-color: black;
-            margin-top: 20px;
-            margin-left: 20px;
+           /* margin-top: 20px;
+            margin-left: 20px; */
+			margin: 50px auto;
+			width: 800px;
+			border: 1px solid chartreuse;
+			box-shadow: 5px 5px green;
         }
+		hr{
+			border: 1px solid chartreuse;
+			width: 760px;
+			margin-right: 16px;
+		}
+		small{
+			text-align: center;
+			/* margin: 0 auto; */
+			color: chartreuse;
+		}
+		form{
+			margin-left: 20px;
+			margin-bottom: 20px;
+		}
         .dados-senha{
             background-color:black;
             color: chartreuse;
@@ -40,13 +60,13 @@
             border: 1px solid chartreuse;
             color: chartreuse;
         }
-		.teclado:disabled{
+		.teclado:disabled{ 
 			border-bottom: 5px solid grey;
-			border-right: 5px solid grey;
+			/* border-right: 5px solid grey; */
 		}
 		.teclado:enabled{
 			border-bottom: 5px solid green;
-			border-right: 5px solid green;
+			/* border-right: 5px solid green; */
 		}
     </style>
     <script language="javascript">
@@ -221,15 +241,18 @@
     </script>
 </head>
 <body onload="gerarSequenciaRandomicaBotoes();">
-    <h1>Login Teclado Virtual</h1>
     <div id="container">
+	<h1>Teclado Virtual</h1>
+	
         <form>
+			<hr />
             <label class="dados-senha">Quantidade de Digitos:</label><br />
             <input type="number" id="qtd-senha" class="dados-senha" min="4" max="12" step="2" value="6" size="12"><br /><br />
             <input type="button" id="gerar-senha" class="dados-senha" value="Gerar Senha" onclick="gerarSenha();" /><br /><br />
             <label class="dados-senha">Sua Senha é:</label><br />
             <input type="text" id="result-senha" class="dados-senha" readonly="true"/><br />
             <br />
+			<hr />
             <br />
             <table id="virtualkey">
                 <tr>
@@ -243,6 +266,10 @@
                     <td><input type="button" id="btn-entrar" class="teclado"  value="Entrar" onclick="acessar();" disabled></td>
                 </tr>
             </table>
+			<hr />
+			<small>Teclado Virtual - 2020</small><br />
+			<small>Desenvolvido por: Marcos Willian de Souza</small><br />
+			<small>Treinamento para automação de testes</small><br />
         </form>
     </div>
 </body>
