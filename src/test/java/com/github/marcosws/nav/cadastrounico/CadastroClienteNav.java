@@ -1,6 +1,7 @@
 package com.github.marcosws.nav.cadastrounico;
 
 import com.github.marcosws.base.cadastrounico.CadastroCliente;
+import com.github.marcosws.base.cadastrounico.TipoDeCadastro;
 import com.github.marcosws.front.cadastrounico.CadastroClienteFront;
 import com.github.marcosws.core.Validation;
 import com.github.marcosws.utils.Common;
@@ -19,14 +20,14 @@ public class CadastroClienteNav {
 		Validation validacao = new Validation();
 		validacao.validaTexto("Cadastro de Cliente", cadastroClienteFront.validaTitulo(), "Titulo da Tela: Cadastro de Cliente");
 		
-		if(cadastroCliente.getTipoDeCadastro().equalsIgnoreCase("Pessoa Física")) {
+		if(cadastroCliente.getTipoDeCadastro().equals(TipoDeCadastro.PESSOA_FISICA.getValor())) {
 			
 			cadastroClienteFront.selecionaPessoaFisica();
 			cadastroClienteFront.digitaNome(cadastroCliente.getNome());
 			cadastroClienteFront.digitaCpf(cadastroCliente.getCpf());
 			
 		}
-		else if(cadastroCliente.getTipoDeCadastro().equalsIgnoreCase("Pessoa Jurídica")) {
+		else if(cadastroCliente.getTipoDeCadastro().equalsIgnoreCase(TipoDeCadastro.PESSOA_JURIDICA.getValor())) {
 			
 			cadastroClienteFront.selecionaPessoaJuridica();
 			cadastroClienteFront.digitaNomeFantasia(cadastroCliente.getNomeFantasia());
@@ -46,20 +47,58 @@ public class CadastroClienteNav {
 			
 			if(cadastroCliente.isValidaMensagem()) {
 				
-				validacao.validaTexto(cadastroCliente.getTextoMensagem(), cadastroClienteFront.validaTextoMensagem().replace("\n", ""), "Validação Mensagem da Caixa de Dialogo");
+				if(cadastroCliente.getTextoMensagem().equals("")) {
+					
+					if(cadastroCliente.getTipoDeCadastro().equals(TipoDeCadastro.PESSOA_FISICA.getValor())) {
+						
+						if(!cadastroCliente.getStatusNome().isEmpty())
+							validacao.validaTexto(cadastroCliente.getStatusNome(), cadastroClienteFront.statusNome(),"Status Nome");
+						
+						if(!cadastroCliente.getStatusCpf().isEmpty())
+							validacao.validaTexto(cadastroCliente.getStatusCpf(), cadastroClienteFront.statusCpf(),"Status CPF");
+						
+					}
+					else if(cadastroCliente.getTipoDeCadastro().equals(TipoDeCadastro.PESSOA_JURIDICA.getValor())) {
+						
+						if(!cadastroCliente.getStatusNomeFantasia().isEmpty())
+							validacao.validaTexto(cadastroCliente.getStatusNomeFantasia(), cadastroClienteFront.statusNomeFantasia(),"Status Nome Fantasia");
+						
+						if(!cadastroCliente.getStatusRazaoSocial().isEmpty())
+							validacao.validaTexto(cadastroCliente.getStatusRazaoSocial(), cadastroClienteFront.statusRazaoSocial(),"Status Razão Social");
+						
+						if(!cadastroCliente.getStatusCnpj().isEmpty())
+							validacao.validaTexto(cadastroCliente.getStatusCnpj(), cadastroClienteFront.statusCnpj(),"Status CNPJ");
+						
+					}
+					
+					if(!cadastroCliente.getStatusTelefone().isEmpty())
+						validacao.validaTexto(cadastroCliente.getStatusTelefone(), cadastroClienteFront.statusTelefone(),"Status Telefone");
+					
+					if(!cadastroCliente.getStatusCelular().isEmpty())
+						validacao.validaTexto(cadastroCliente.getStatusCelular(), cadastroClienteFront.statusCelular(),"Status Celular");
+					
+					if(!cadastroCliente.getStatusEmail().isEmpty())
+						validacao.validaTexto(cadastroCliente.getStatusEmail(), cadastroClienteFront.statusEmail(),"Status E-mail");
+					
+				}
+				else {
+					
+					validacao.validaTexto(cadastroCliente.getTextoMensagem(), cadastroClienteFront.validaTextoMensagem().replace("\n", ""), "Validação Mensagem da Caixa de Dialogo");
+					
+				}
 				
-				common.sleep(3000);
+				common.sleep(6000);
 				
 			}
 			else {
 				
-				if(cadastroCliente.getTipoDeCadastro().equals("Pessoa Física")) {
+				if(cadastroCliente.getTipoDeCadastro().equals(TipoDeCadastro.PESSOA_FISICA.getValor())) {
 					
 					validacao.validaTexto(cadastroCliente.getNome(), cadastroClienteFront.validaCampoNome().replace("Nome: ", ""), "Nome");
 					validacao.validaTexto(cadastroCliente.getCpf(), common.removeMask(cadastroClienteFront.validaCampoCpf().replace("CPF: ", "")), "CPF");
 					
 				}
-				else if(cadastroCliente.getTipoDeCadastro().equals("Pessoa Jurídica")){
+				else if(cadastroCliente.getTipoDeCadastro().equals(TipoDeCadastro.PESSOA_JURIDICA.getValor())){
 					
 					validacao.validaTexto(cadastroCliente.getNomeFantasia(), cadastroClienteFront.validaCampoNomeFantasia().replace("Nome Fantasia: ", ""), "Nome Fantasia");
 					validacao.validaTexto(cadastroCliente.getRazaoSocial(), cadastroClienteFront.validaCampoRazaoSocial().replace("Razão Social: ", ""), "Razão Social");

@@ -15,7 +15,14 @@ import com.github.marcosws.testcase.cadastrounico.*;
 	CTA004.class,
 	CTA005.class,
 	CTA006.class,
-	CTA007.class
+	CTA007.class,
+	CTA008.class,
+	CTA009.class,
+	CTA010.class,
+	CTA011.class,
+	CTA012.class,
+	CTA013.class,
+	CTA014.class
 	})
 public class AllTests {
 

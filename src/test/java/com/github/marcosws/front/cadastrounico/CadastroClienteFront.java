@@ -151,16 +151,36 @@ public class CadastroClienteFront extends BasePage {
 		this.clickElement(Attribute.id, "voltar");
 	}
 	
+	public String statusNome() {
+		return this.getTextElement(Attribute.id, "status-nome");
+	}
 	
+	public String statusCpf() {
+		return this.getTextElement(Attribute.id, "status-cpf");
+	}
 	
+	public String  statusNomeFantasia() {
+		return this.getTextElement(Attribute.id, "status-nome-fantasia");
+	}
 	
+	public String statusRazaoSocial() {
+		return this.getTextElement(Attribute.id, "status-razao-social");
+	}
 	
+	public String statusCnpj() {
+		return this.getTextElement(Attribute.id, "status-cnpj");
+	}
 	
+	public String statusTelefone() {
+		return this.getTextElement(Attribute.id, "status-telefone");
+	}
 	
+	public String statusCelular() {
+		return this.getTextElement(Attribute.id, "status-celular");
+	}
 	
-	
-	
-	
-	
+	public String statusEmail() {
+		return this.getTextElement(Attribute.id, "status-email");
+	}
 
 }

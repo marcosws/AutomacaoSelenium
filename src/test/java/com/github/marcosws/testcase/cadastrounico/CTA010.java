@@ -9,6 +9,11 @@ import com.github.marcosws.nav.cadastrounico.CadastroClienteNav;
 
 public class CTA010 {
 	
+	/*
+	 CTA010 - Realizar o cadastro de cliente para pessoa física sem parametrização (Apresentar caixa de dialogo) 
+	 preenchendo com um Formato de Celular inválido e preenchendo demais campos com dados válidos. 
+	 */
+	
 	@Test
 	public void runTestCase() {
 		CadastroClienteNav cadastroClienteNav = new CadastroClienteNav();
