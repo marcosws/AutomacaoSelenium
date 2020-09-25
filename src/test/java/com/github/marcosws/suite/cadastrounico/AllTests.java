@@ -22,7 +22,16 @@ import com.github.marcosws.testcase.cadastrounico.*;
 	CTA011.class,
 	CTA012.class,
 	CTA013.class,
-	CTA014.class
+	CTA014.class,
+	CTA015.class,
+	CTA016.class,
+	CTA017.class,
+	CTA018.class,
+	CTA019.class,
+	CTA020.class,
+	CTA021.class,
+	CTA022.class,
+	CTA023.class
 	})
 public class AllTests {
 
