@@ -3,6 +3,7 @@ package com.github.marcosws.base.cadastrounico;
 import org.json.simple.JSONObject;
 import org.json.simple.JSONValue;
 
+import com.github.marcosws.core.Validation;
 import com.github.marcosws.utils.Common;
 
 public class CadastroCliente {
@@ -20,9 +21,11 @@ public class CadastroCliente {
 	
 	private boolean cadastrar;
 	private boolean limpar;
+	private boolean validarCadastro;
 	private boolean validaMensagem;
 	private String textoMensagem;
-	
+	private String aceitarMensagem;
+	private boolean validarStatus;
 	private String statusNome;
 	private String statusCpf;
 	private String statusNomeFantasia;
@@ -54,10 +57,17 @@ public void carregaMassa(String nomeClasseArquivoJson){
 			this.setCelular(jsonObject.get("celular").toString());
 			this.setEmail(jsonObject.get("email").toString());
 			this.setClienteAutorizaIPEmail((boolean) jsonObject.get("clienteAutorizaIPEmail"));
+			
 			this.setCadastrar((boolean) jsonObject.get("cadastrar"));
 			this.setLimpar((boolean) jsonObject.get("limpar"));
+			
+			this.setValidarCadastro((boolean) jsonObject.get("validarCadastro"));
 			this.setValidaMensagem((boolean) jsonObject.get("validaMensagem"));
 			this.setTextoMensagem(jsonObject.get("textoMensagem").toString());
+			this.setAceitarMensagem(jsonObject.get("aceitarMensagem").toString());
+			
+			this.setValidarStatus((boolean) jsonObject.get("validarStatus"));
+			
 			this.setStatusNome(jsonObject.get("statusNome").toString());
 			this.setStatusCpf(jsonObject.get("statusCpf").toString());
 			this.setStatusNomeFantasia(jsonObject.get("statusNomeFantasia").toString());
@@ -71,8 +81,9 @@ public void carregaMassa(String nomeClasseArquivoJson){
 		}
 		catch(NullPointerException e){
 			
-			//LogTest logTest = new LogTest();
-			//logTest.LogFail("Erro no layout do arquivo Json: " + nomeClasseArquivoJson);
+			//e.printStackTrace();
+			Validation validacao = new Validation();
+			validacao.falha("Erro no layout do arquivo Json: " + nomeClasseArquivoJson + ".json, verifique os campos no json e na classe CadastroCliente");
 			
 		}
 		
@@ -252,6 +263,30 @@ public void carregaMassa(String nomeClasseArquivoJson){
 
 	public void setValidaMensagem(boolean validaMensagem) {
 		this.validaMensagem = validaMensagem;
+	}
+
+	public String getAceitarMensagem() {
+		return aceitarMensagem;
+	}
+
+	public void setAceitarMensagem(String aceitarMensagem) {
+		this.aceitarMensagem = aceitarMensagem;
+	}
+
+	public boolean isValidarCadastro() {
+		return validarCadastro;
+	}
+
+	public void setValidarCadastro(boolean validarCadastro) {
+		this.validarCadastro = validarCadastro;
+	}
+
+	public boolean isValidarStatus() {
+		return validarStatus;
+	}
+
+	public void setValidarStatus(boolean validarStatus) {
+		this.validarStatus = validarStatus;
 	}
 	
 	

@@ -106,14 +106,13 @@ public class CadastroClienteFront extends BasePage {
 		this.clickElement(Attribute.id, "limpar");
 	}
 	
-	public String validaTextoMensagem() {
-		return this.dialogBox(true);
+	public String validaTextoMensagem(boolean aceitarMsg) {
+		return this.dialogBox(aceitarMsg);
 	}
 	
 	public String validaCampoNome() {
 		return this.getTextElement(Attribute.id, "label-nome");
 	}
-	
 	
 	public String validaCampoCpf() {
 		return this.getTextElement(Attribute.id, "label-cpf");

@@ -14,5 +14,10 @@ public class Validation {
 			logTest.LogAssert("A validação do campo: [" + rotulo + "] falhou, esperado: [" + esperado + "] e gerado: [" + gerado +"]", esperado, gerado);
 		}
 	}
+	
+	public void falha(String texto) {
+		LogTest logTest = new LogTest();
+		logTest.LogFail(texto);
+	}
 
 }
