@@ -19,5 +19,10 @@ public class Validation {
 		LogTest logTest = new LogTest();
 		logTest.LogFail(texto);
 	}
+	
+	public void log(String msg) {
+		LogTest logTest = new LogTest();
+		logTest.LogInfo(msg);
+	}
 
 }

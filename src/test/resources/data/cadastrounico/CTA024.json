@@ -11,8 +11,11 @@
 	"clienteAutorizaIPEmail": true,
 	"cadastrar": true,
 	"limpar": false,
-	"validaMensagem":true,
+	"validarCadastro": false,
+	"validaMensagem": false,
 	"textoMensagem":"",
+	"aceitarMensagem":"",
+	"validarStatus": true,
 	"statusNome": "Nome é obrigatório!",
 	"statusCpf": "CPF é obrigatório!",
 	"statusNomeFantasia": "",
@@ -22,6 +25,6 @@
 	"statusCelular": "É obrigatório pelo menos uma forma de contato! (Telefone, Celular ou E-mail)",
 	"statusEmail": "É obrigatório pelo menos uma forma de contato! (Telefone, Celular ou E-mail)",
 	"mensagemDeInconsistencia":"Apresentar label informativa",
-	"apresentarMensagemDeconfirmacaoDeCadastro":false,
-	"apresentarMensagemDeconfirmacaoAntesDeLimparOsCampos":false
+	"apresentarMensagemDeconfirmacaoDeCadastro": false,
+	"apresentarMensagemDeconfirmacaoAntesDeLimparOsCampos": false
 }

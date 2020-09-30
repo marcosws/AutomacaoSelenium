@@ -27,16 +27,18 @@ public class CadastroClienteNav {
 			if(cadastroCliente.isValidaMensagem()) {
 				if(cadastroCliente.getAceitarMensagem().equalsIgnoreCase("Não")){
 					this.validaMensagem(false);
+					validacao.log("Validação - Opção da Mensagem: [" + cadastroCliente.getAceitarMensagem() + "]");
+				} 
+				else if(cadastroCliente.getAceitarMensagem().equalsIgnoreCase("Sim")){
+					this.validaMensagem(true);
+					validacao.log("Validação - Opção da Mensagem: [" + cadastroCliente.getAceitarMensagem() + "]");
 				}
 				else {
 					this.validaMensagem(true);
 				}
 			}
 			
-			if((cadastroCliente.isValidarCadastro() ^ cadastroCliente.isValidarStatus())) {
-				validacao.falha("O Validação do Cadastro está como [" + cadastroCliente.isValidarCadastro() + "] e a Validação do Status está como [" + cadastroCliente.isValidarStatus() + "], Deve estar um como Verdadeiro e o outro Falso no arquivo json.");
-			}
-			else if(cadastroCliente.isValidarCadastro()) {
+			if(cadastroCliente.isValidarCadastro()) {
 				this.validaCadastro();
 			}
 			else if(cadastroCliente.isValidarStatus()) {
@@ -51,12 +53,17 @@ public class CadastroClienteNav {
 			if(cadastroCliente.isValidaMensagem()) {
 				if(cadastroCliente.getAceitarMensagem().equalsIgnoreCase("Não")){
 					this.validaMensagem(false);
+					validacao.log("Validação - Opção da Mensagem: [" + cadastroCliente.getAceitarMensagem() + "]");
 					this.validaCamposCadastroVazio(false);
 				}
 				else {
 					this.validaMensagem(true);
+					validacao.log("Validação - Opção da Mensagem: [" + cadastroCliente.getAceitarMensagem() + "]");
 					this.validaCamposCadastroVazio(true);
 				}
+			}
+			else {
+				this.validaCamposCadastroVazio(true);
 			}
 			
 		}
@@ -139,11 +146,41 @@ public class CadastroClienteNav {
 	
 	private void validaCamposCadastroVazio(boolean vazio) {
 		
+		Validation validacao = new Validation();
+		Common common = new Common();
+		String strVazio = "";
 		if(vazio) {
+			
+			if(cadastroCliente.getTipoDeCadastro().equals(TipoDeCadastro.PESSOA_FISICA.getValor())) {
+				validacao.validaTexto(strVazio, cadastroClienteFront.validaTextoNome(), "Nome");
+				validacao.validaTexto(strVazio, common.removeMask(cadastroClienteFront.validaTextoCpf()), "CPF");
+			}
+			else if(cadastroCliente.getTipoDeCadastro().equals(TipoDeCadastro.PESSOA_JURIDICA.getValor())){
+				validacao.validaTexto(strVazio, cadastroClienteFront.validaTextoNomeFantasia(), "Nome Fantasia");
+				validacao.validaTexto(strVazio, cadastroClienteFront.validaTextoRazaoSocial(), "Razão Social");
+				validacao.validaTexto(strVazio, common.removeMask(cadastroClienteFront.validaTextoCnpj()), "CNPJ");
+			}
+			validacao.validaTexto(strVazio, common.removeMask(cadastroClienteFront.validaTextoTelefone()), "Telefone");
+			validacao.validaTexto(strVazio, common.removeMask(cadastroClienteFront.validaTextoCelular()), "Celular");
+			validacao.validaTexto(strVazio, cadastroClienteFront.validaTextoEmail(), "E-Mail");
+			
+			
 			
 		}
 		else {
-			
+			if(cadastroCliente.getTipoDeCadastro().equals(TipoDeCadastro.PESSOA_FISICA.getValor())) {
+				validacao.validaTexto(cadastroCliente.getNome(), cadastroClienteFront.validaTextoNome(), "Nome");
+				validacao.validaTexto(cadastroCliente.getCpf(), common.removeMask(cadastroClienteFront.validaTextoCpf()), "CPF");
+			}
+			else if(cadastroCliente.getTipoDeCadastro().equals(TipoDeCadastro.PESSOA_JURIDICA.getValor())){
+				validacao.validaTexto(cadastroCliente.getNomeFantasia(), cadastroClienteFront.validaTextoNomeFantasia(), "Nome Fantasia");
+				validacao.validaTexto(cadastroCliente.getRazaoSocial(), cadastroClienteFront.validaTextoRazaoSocial(), "Razão Social");
+				validacao.validaTexto(cadastroCliente.getCnpj(), common.removeMask(cadastroClienteFront.validaTextoCnpj()), "CNPJ");
+			}
+			validacao.validaTexto(cadastroCliente.getTelefone(), common.removeMask(cadastroClienteFront.validaTextoTelefone()), "Telefone");
+			validacao.validaTexto(cadastroCliente.getCelular(), common.removeMask(cadastroClienteFront.validaTextoCelular()), "Celular");
+			validacao.validaTexto(cadastroCliente.getEmail(), cadastroClienteFront.validaTextoEmail(), "E-Mail");
+
 		}
 		
 	}
@@ -155,7 +192,7 @@ public class CadastroClienteNav {
 	
 	private void validaCampo(String esperado, String gerado, String rotulo) {
 		Validation validacao = new Validation();
-		if(!esperado.isEmpty())
+		if(!esperado.equals(""))
 			validacao.validaTexto(esperado, gerado, rotulo);
 	}
 	

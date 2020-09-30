@@ -106,6 +106,33 @@ public class CadastroClienteFront extends BasePage {
 		this.clickElement(Attribute.id, "limpar");
 	}
 	
+	public String validaTextoNome() {
+		return this.getValueElement(Attribute.id, "nome");
+	}
+	public String validaTextoCpf() {
+		return this.getValueElement(Attribute.id, "cpf");
+	}
+	public String validaTextoNomeFantasia() {
+		return this.getValueElement(Attribute.id, "nome-fantasia");
+	}
+	public String validaTextoRazaoSocial() {
+		return this.getValueElement(Attribute.id, "razao-social");
+	}
+	public String validaTextoCnpj() {
+		return this.getValueElement(Attribute.id, "cnpj");
+	}
+	public String validaTextoTelefone() {
+		return this.getValueElement(Attribute.id, "telefone");
+	}
+	public String validaTextoCelular() {
+		return this.getValueElement(Attribute.id, "celular");
+	}
+	public String validaTextoEmail() {
+		return this.getValueElement(Attribute.id, "email");
+	}
+	
+	
+	
 	public String validaTextoMensagem(boolean aceitarMsg) {
 		return this.dialogBox(aceitarMsg);
 	}

@@ -9,6 +9,11 @@ import com.github.marcosws.nav.cadastrounico.CadastroClienteNav;
 
 public class CTA029 {
 	
+	/*
+	 CTA029 - Realizar o cadastro de cliente para pessoa física sem parametrização preenchendo todos os campos e acionando o botão Limpar.
+	 */
+	
+	
 	@Test
 	public void runTestCase() {
 		CadastroClienteNav cadastroClienteNav = new CadastroClienteNav();

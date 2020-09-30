@@ -23,7 +23,7 @@ import com.github.marcosws.testcase.cadastrounico.*;
 	CTA012.class,
 	CTA013.class,
 	CTA014.class, 
-	CTA015.class,
+	CTA015.class, 
 	CTA016.class,
 	CTA017.class,
 	CTA018.class,
@@ -31,7 +31,24 @@ import com.github.marcosws.testcase.cadastrounico.*;
 	CTA020.class,
 	CTA021.class,
 	CTA022.class,
-	CTA023.class 
+	CTA023.class,
+	CTA024.class,
+	CTA025.class,
+	CTA026.class,
+	CTA027.class,
+	CTA028.class,
+	CTA029.class,
+	CTA030.class,
+	CTA031.class,
+	CTA032.class,
+	CTA033.class,
+	CTA034.class,
+	CTA035.class,
+	CTA036.class,
+	CTA037.class,
+	CTA038.class,
+	CTA039.class,
+	CTA040.class
 	})
 public class AllTests {
 

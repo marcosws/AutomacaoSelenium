@@ -50,6 +50,13 @@ public class BasePage {
 		this.highLight(webElement);
 		return webElement.getText();
 	}
+	protected String getValueElement(Attribute attribute, String value) {
+		WebElement webElement = this.loadElement(attribute, value);
+		this.highLight(webElement);
+		return webElement.getAttribute("value");
+	}
+	
+	
 	protected String dialogBox(boolean confirm){
 		Common common = new Common();
 		common.sleep(3000);

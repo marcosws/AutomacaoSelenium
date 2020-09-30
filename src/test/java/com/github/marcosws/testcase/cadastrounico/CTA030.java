@@ -9,6 +9,10 @@ import com.github.marcosws.nav.cadastrounico.CadastroClienteNav;
 
 public class CTA030 {
 	
+	/*
+	 CTA030 - Realizar o cadastro de cliente para pessoa jurídica sem parametrização (Apresentar caixa de dialogo) preenchendo todos os campos com dados válidos.
+	 */
+	
 	@Test
 	public void runTestCase() {
 		CadastroClienteNav cadastroClienteNav = new CadastroClienteNav();

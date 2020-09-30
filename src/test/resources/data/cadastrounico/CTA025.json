@@ -11,6 +11,7 @@
 	"clienteAutorizaIPEmail": true,
 	"cadastrar": true,
 	"limpar": false,
+	"validarCadastro": true,
 	"validaMensagem": true,
 	"textoMensagem": "Deseja cadastrar as informações",
 	"aceitarMensagem": "Sim",
