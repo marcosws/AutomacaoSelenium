@@ -12,6 +12,9 @@
         h1, h3{
             margin-left: 30px;
         }
+		fieldset{
+			margin-right: 20px;
+		}
         hr{
             color: grey;
             background-color: lightgrey;
@@ -316,16 +319,23 @@
             <input type="text" class="form-m1" /><br>
             <label>Endereço</label><br>
             <input type="text" class="form-m1" /><br>
+			<label>Numero</label><br>
+            <input type="number" class="form-m1" /><br>
             <label>CEP</label><br>
-            <input type="text" class="form-m1" /><br><br>
-            <label>Profissão</label><br>
-            <input type="radio" name="rb1" class="form-m1" /><label>Estudante</label><br>
-            <input type="radio" name="rb1" class="form-m1" /><label>Profissional CLT</label><br>
-            <input type="radio" name="rb1" class="form-m1" /><label>Propietario de Empresa</label><br><br>
-            <label>Veiculo</label><br>
-            <input type="checkbox" name="carro" checked /><label>Possui Carro</label><br>
-            <input type="checkbox" name="moto" /><label>Possui Moto</label><br>
-            <input type="checkbox" name="utilitario" /><label>Possui Veiculo Utilitário</label><br><br>
+            <input type="text" class="form-m1" maxlength="8"/><br><br>
+			<fieldset>
+				<legend>Profissão</legend>
+				<input type="radio" name="rb1" class="form-m1" /><label>Estudante</label><br>
+				<input type="radio" name="rb1" class="form-m1" /><label>Profissional CLT</label><br>
+				<input type="radio" name="rb1" class="form-m1" /><label>Propietario de Empresa</label><br>
+			</fieldset>
+			<fieldset>
+				<legend>Veiculo</legend>
+				<input type="checkbox" name="carro" checked /><label>Possui Carro</label><br>
+				<input type="checkbox" name="moto" /><label>Possui Moto</label><br>
+				<input type="checkbox" name="utilitario" /><label>Possui Veiculo Utilitário</label><br>
+			</fieldset>
+			<br>
             <label>Montadora</label><br>
             <select id="cars" name="cars">
                 <option value="volvo">Volvo</option>
@@ -335,6 +345,13 @@
                 <option value="volkswagem">Volkswagem</option>
                 <option value="ford">Ford</option>
                 <option value="chevrolet">Chevrolet</option>
+				<option value="renault">Renault</option>
+				<option value="jeep">Jeep</option>
+				<option value="bmw">BMW</option>
+				<option value="mercedes">Mercedes-Benz</option>
+				<option value="toyota">Toyota</option>
+				<option value="honda">Honda</option>
+				<option value="hyundai">Hyundai</option>
             </select><br><br>
             <hr />
             <input type="button" value="Continuar"  onclick="proximoFormulario();"/><br><br>
@@ -353,11 +370,11 @@
                 <option value="PE">PE</option>
                 <option value="GO">GO</option>
             </select><br>
-            <label>Universidade</label><br>
-            <select id="universidade" name="universidade">
-                <option value="harvard">Harvard</option>
-                <option value="oxford">Oxford</option>
-                <option value="yale">Yale</option>
+            <label>Nível</label><br>
+            <select name="nivel">
+                <option value="nivel">Nível 1</option>
+                <option value="nivel">Nível 2</option>
+                <option value="nivel">Nível 3</option>
             </select><br><br><br>
             <table id="tabela">
                 <tr>
