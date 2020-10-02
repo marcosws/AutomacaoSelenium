@@ -103,5 +103,21 @@ public class Common {
 		return field;
 		
 	}
+	public boolean checkValue(String value) {
+		if(value.equalsIgnoreCase("sim")) {
+			return true;
+		}
+		else {
+			return false;
+		}
+	}
+	public String checkValue(boolean value) {
+		if(value) {
+			return "Sim";
+		}
+		else {
+			return "Não";
+		}
+	}
 
 }

@@ -8,7 +8,9 @@ public class CadastroBasico {
 	
 	private String nome;
 	private String endereco;
+	private String numero;
 	private String cep;
+	
 	private String profissao;
 	private String carro;
 	private String moto;
@@ -25,6 +27,7 @@ public class CadastroBasico {
 
 			this.setNome(document.getDocumentElement().getElementsByTagName("nome").item(0).getTextContent());
 			this.setEndereco(document.getDocumentElement().getElementsByTagName("endereco").item(0).getTextContent());
+			this.setNumero(document.getDocumentElement().getElementsByTagName("numero").item(0).getTextContent());
 			this.setCep(document.getDocumentElement().getElementsByTagName("cep").item(0).getTextContent());
 			this.setProfissao(document.getDocumentElement().getElementsByTagName("profissao").item(0).getTextContent());
 			this.setCarro(document.getDocumentElement().getElementsByTagName("carro").item(0).getTextContent());
@@ -113,7 +116,15 @@ public class CadastroBasico {
 	public void setMontadora(String montadora) {
 		this.montadora = montadora;
 	}
-	
-	
+
+
+	public String getNumero() {
+		return numero;
+	}
+
+
+	public void setNumero(String numero) {
+		this.numero = numero;
+	}
 
 }

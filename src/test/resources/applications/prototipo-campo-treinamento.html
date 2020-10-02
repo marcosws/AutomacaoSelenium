@@ -12,6 +12,9 @@
         h1, h3{
             margin-left: 30px;
         }
+		select{
+			width: 100px;
+		}
 		fieldset{
 			margin-right: 20px;
 		}
@@ -168,7 +171,8 @@
 
            var nome = document.querySelectorAll('input[class="form-m1"]')[0].value;
            var endr = document.querySelectorAll('input[class="form-m1"]')[1].value;
-           var cep = document.querySelectorAll('input[class="form-m1"]')[2].value;
+		   var numero = document.querySelectorAll('input[class="form-m1"]')[2].value;
+           var cep = document.querySelectorAll('input[class="form-m1"]')[3].value;
 
             if(nome == "")
                 nome = "O Nome não foi Preenchido!"
@@ -182,34 +186,40 @@
            .getElementsByTagName('tr')[1]
            .getElementsByTagName('label')[1].innerHTML = endr;
 
+		   if(numero == "")
+                numero = "O Cep não foi Preenchido!"
+           document.getElementsByTagName('table')[2]
+           .getElementsByTagName('tr')[2]
+           .getElementsByTagName('label')[1].innerHTML = numero;
+
            if(cep == "")
                 cep = "O Cep não foi Preenchido!"
            document.getElementsByTagName('table')[2]
-           .getElementsByTagName('tr')[2]
+           .getElementsByTagName('tr')[3]
            .getElementsByTagName('label')[1].innerHTML = cep;
-
-           var prof_est = document.querySelectorAll('input[class="form-m1"]')[3].checked;
-           var prof_clt = document.querySelectorAll('input[class="form-m1"]')[4].checked;
-           var prof_emp = document.querySelectorAll('input[class="form-m1"]')[5].checked;
+		   
+           var prof_est = document.querySelectorAll('input[class="form-m1"]')[4].checked;
+           var prof_clt = document.querySelectorAll('input[class="form-m1"]')[5].checked;
+           var prof_emp = document.querySelectorAll('input[class="form-m1"]')[6].checked;
 
            if(prof_est){
                 document.getElementsByTagName('table')[2]
-                .getElementsByTagName('tr')[3]
+                .getElementsByTagName('tr')[4]
                 .getElementsByTagName('label')[1].innerHTML = "Estudande";
            }
            else if(prof_clt){
                 document.getElementsByTagName('table')[2]
-                .getElementsByTagName('tr')[3]
+                .getElementsByTagName('tr')[4]
                 .getElementsByTagName('label')[1].innerHTML = "Profissional CLT";
            }
            else if(prof_emp){
                 document.getElementsByTagName('table')[2]
-                .getElementsByTagName('tr')[3]
-                .getElementsByTagName('label')[1].innerHTML = "Propietario de Empresa";
+                .getElementsByTagName('tr')[4]
+                .getElementsByTagName('label')[1].innerHTML = "Empresário";
            }
            else{
                 document.getElementsByTagName('table')[2]
-                .getElementsByTagName('tr')[3]
+                .getElementsByTagName('tr')[4]
                 .getElementsByTagName('label')[1].innerHTML = "Não foi selecionado!";
            }
 
@@ -218,20 +228,20 @@
            var utilitario = document.querySelectorAll('input[name="utilitario"]')[0].checked;
 
             document.getElementsByTagName('table')[2]
-            .getElementsByTagName('tr')[4]
+            .getElementsByTagName('tr')[5]
             .getElementsByTagName('label')[1].innerHTML = (carro ? "Sim" : "Não");
             document.getElementsByTagName('table')[2]
-            .getElementsByTagName('tr')[5]
+            .getElementsByTagName('tr')[6]
             .getElementsByTagName('label')[1].innerHTML = (moto ? "Sim" : "Não");
             document.getElementsByTagName('table')[2]
-            .getElementsByTagName('tr')[6]
+            .getElementsByTagName('tr')[7]
             .getElementsByTagName('label')[1].innerHTML = (utilitario ? "Sim" : "Não");
 
 
             var combo_montadora = document.querySelector('select');
             var montadora = combo_montadora.options[combo_montadora.selectedIndex].text;
             document.getElementsByTagName('table')[2]
-            .getElementsByTagName('tr')[7]
+            .getElementsByTagName('tr')[8]
             .getElementsByTagName('label')[1].innerHTML = montadora;
 
 
@@ -242,31 +252,43 @@
             .getElementsByTagName('tr')[0]
             .getElementsByTagName('label')[1].innerHTML = estado;
 
-            var combo_universidade = document.querySelectorAll('select')[2];
-            var universidade = combo_universidade.options[combo_universidade.selectedIndex].text;
+            var combo_nivel = document.querySelectorAll('select')[2];
+            var nivel = combo_nivel.options[combo_nivel.selectedIndex].text;
             document.getElementsByTagName('table')[3]
             .getElementsByTagName('tr')[1]
-            .getElementsByTagName('label')[1].innerHTML = universidade;
+            .getElementsByTagName('label')[1].innerHTML = nivel;
+			
+			var combo_percentual1 = document.querySelectorAll('select')[3];
+            var percentual1 = combo_percentual1.options[combo_percentual1.selectedIndex].text;
+            document.getElementsByTagName('table')[3]
+            .getElementsByTagName('tr')[2]
+            .getElementsByTagName('label')[1].innerHTML = percentual1;
+			
+			var combo_percentual2 = document.querySelectorAll('select')[4];
+            var percentual2 = combo_percentual2.options[combo_percentual2.selectedIndex].text;
+            document.getElementsByTagName('table')[3]
+            .getElementsByTagName('tr')[3]
+            .getElementsByTagName('label')[1].innerHTML = percentual2;
 
             var alertMsg = document.getElementsByTagName('table')[0]
             .getElementsByTagName('tr')[0]
             .getElementsByTagName('label')[1].innerText;
             document.getElementsByTagName('table')[3]
-            .getElementsByTagName('tr')[2]
+            .getElementsByTagName('tr')[4]
             .getElementsByTagName('label')[1].innerHTML = alertMsg;
 
             var cofirmMsg = document.getElementsByTagName('table')[0]
             .getElementsByTagName('tr')[1]
             .getElementsByTagName('label')[1].innerText;
             document.getElementsByTagName('table')[3]
-            .getElementsByTagName('tr')[3]
+            .getElementsByTagName('tr')[5]
             .getElementsByTagName('label')[1].innerHTML = cofirmMsg;
 
             var promptMsg = document.getElementsByTagName('table')[0]
             .getElementsByTagName('tr')[2]
             .getElementsByTagName('label')[1].innerText;
             document.getElementsByTagName('table')[3]
-            .getElementsByTagName('tr')[4]
+            .getElementsByTagName('tr')[6]
             .getElementsByTagName('label')[1].innerHTML = promptMsg;
 
             var i;
@@ -327,13 +349,13 @@
 				<legend>Profissão</legend>
 				<input type="radio" name="rb1" class="form-m1" /><label>Estudante</label><br>
 				<input type="radio" name="rb1" class="form-m1" /><label>Profissional CLT</label><br>
-				<input type="radio" name="rb1" class="form-m1" /><label>Propietario de Empresa</label><br>
+				<input type="radio" name="rb1" class="form-m1" /><label>Empresário</label><br>
 			</fieldset>
 			<fieldset>
 				<legend>Veiculo</legend>
 				<input type="checkbox" name="carro" checked /><label>Possui Carro</label><br>
 				<input type="checkbox" name="moto" /><label>Possui Moto</label><br>
-				<input type="checkbox" name="utilitario" /><label>Possui Veiculo Utilitário</label><br>
+				<input type="checkbox" name="utilitario" /><label>Possui Utilitário</label><br>
 			</fieldset>
 			<br>
             <label>Montadora</label><br>
@@ -375,6 +397,22 @@
                 <option value="nivel">Nível 1</option>
                 <option value="nivel">Nível 2</option>
                 <option value="nivel">Nível 3</option>
+            </select><br>
+			<label>Percentual 1</label><br>
+			<select>
+                <option value="1">1%</option>
+                <option value="2">2%</option>
+                <option value="3">3%</option>
+				<option value="4">4%</option>
+				<option value="5">5%</option>
+            </select><br>
+			<label>Percentual 2</label><br>
+			<select>
+                <option value="1">1%</option>
+                <option value="2">2%</option>
+                <option value="3">3%</option>
+				<option value="4">4%</option>
+				<option value="5">5%</option>
             </select><br><br><br>
             <table id="tabela">
                 <tr>
@@ -513,6 +551,10 @@
                     <td><label class="cadbas-tab" >Endereço</label></td>
                     <td><label class="cadbas-tab" ></label></td>
                 </tr>
+				<tr>
+                    <td><label class="cadbas-tab" >Numero</label></td>
+                    <td><label class="cadbas-tab" ></label></td>
+                </tr>
                 <tr>
                     <td><label class="cadbas-tab" >CEP</label></td>
                     <td><label class="cadbas-tab" ></label></td>
@@ -530,7 +572,7 @@
                     <td><label class="cadbas-tab" ></label></td>
                 </tr>
                 <tr>
-                    <td><label class="cadbas-tab" >Possui Veiculo Utilitário</label></td>
+                    <td><label class="cadbas-tab" >Possui Utilitário</label></td>
                     <td><label class="cadbas-tab" ></label></td>
                 </tr>
                 <tr>
@@ -546,7 +588,15 @@
                     <td><label></label></td>
                 </tr>
                 <tr>
-                    <td><label>Universidade</label></td>
+                    <td><label>Nível</label></td>
+                    <td><label></label></td>
+                </tr>
+				<tr>
+                    <td><label>Percentual 1</label></td>
+                    <td><label></label></td>
+                </tr>
+				<tr>
+                    <td><label>Percentual 2</label></td>
                     <td><label></label></td>
                 </tr>
                 <tr>

@@ -15,12 +15,18 @@ public class CTA001 {
 	
 	@Test
 	public void runTestCase() {
+		
 		CadastroBasicoNav cadastroBasicoNav = new CadastroBasicoNav();
 		cadastroBasicoNav.executaCadastroBasico(this.getClass().getSimpleName());
+		
+		
 		GeralNav geralNav = new GeralNav();
 		geralNav.executaGeral(this.getClass().getSimpleName());
+		
 		EmpresasNav empresasNav = new EmpresasNav();
 		empresasNav.executaEmpresas(this.getClass().getSimpleName());
+		
+		
 		ConsultaNav consultaNav = new ConsultaNav();
 		consultaNav.executaConsulta(this.getClass().getSimpleName());
 	}
@@ -35,7 +41,7 @@ public class CTA001 {
 	public void endApplication() {
 		
 		Common common = new Common();
-		common.sleep(5000);
+		common.sleep(12000);
 		
 		CampoTreinamento campoTreinamento = new CampoTreinamento();
 		campoTreinamento.finalizarCampoTreinamento();

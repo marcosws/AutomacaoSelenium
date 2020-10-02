@@ -1,9 +1,12 @@
 package com.github.marcosws.core;
 
+import java.util.List;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.Select;
 
 import com.github.marcosws.utils.Common;
 
@@ -28,6 +31,13 @@ public class BasePage {
 		webElement.clear();
 		webElement.sendKeys(text);
 	}
+	protected void editElement(Attribute attribute, String value, String text, int index) {
+		WebElement webElement = this.loadElement(attribute, value, index);
+		this.highLight(webElement);
+		webElement.clear();
+		webElement.sendKeys(text);
+	}
+	
 	protected void clickElement(Attribute attribute, String value) {
 		WebElement webElement = this.loadElement(attribute, value);
 		this.highLight(webElement);
@@ -40,6 +50,40 @@ public class BasePage {
 			webElement.click();
 		}
 	}
+	protected void selectElement(Attribute attribute, String value, boolean checked, int index) {
+		WebElement webElement = this.loadElement(attribute, value, index);
+		this.highLight(webElement);
+		if(checked != webElement.isSelected()) {
+			webElement.click();
+		}
+	}
+	
+	protected void selectElement(Attribute attribute, String value, String text) {
+		Select select = new Select(this.loadElement(attribute, value));
+		this.highLight(this.loadElement(attribute, value));
+		select.selectByVisibleText(text);
+	}
+	
+	protected void selectElement(Attribute attribute, String value, int itemIndex) {
+		Select select = new Select(this.loadElement(attribute, value));
+		this.highLight(this.loadElement(attribute, value));
+		select.selectByIndex(itemIndex);
+	}
+	
+	protected void selectElement(Attribute attribute, String value, String text, int index) {
+		Select select = new Select(this.loadElement(attribute, value, index));
+		this.highLight(this.loadElement(attribute, value, index));
+		select.selectByVisibleText(text);
+	}
+	
+	protected void selectElement(Attribute attribute, String value, int itemIndex, int index) {
+		Select select = new Select(this.loadElement(attribute, value, index));
+		this.highLight(this.loadElement(attribute, value, index));
+		select.selectByIndex(itemIndex);
+	}
+
+	
+	
 	protected boolean ckeckedElement(Attribute attribute, String value) {
 		WebElement webElement = this.loadElement(attribute, value);
 		this.highLight(webElement);
@@ -117,6 +161,31 @@ public class BasePage {
 			webElement = driver.findElement(By.tagName(value));
 		}
 		return webElement;
+	}
+	
+	private WebElement loadElement(Attribute attribute, String value, int index){
+		List<WebElement> webElements = null;
+		if(attribute.equals(Attribute.id)){
+			webElements = driver.findElements(By.id(value));
+		}
+		else if(attribute.equals(Attribute.className)){
+			webElements = driver.findElements(By.className(value));
+		}
+		else if(attribute.equals(Attribute.xpath)){
+			webElements = driver.findElements(By.xpath(value));
+		}
+		else if(attribute.equals(Attribute.name)){
+			webElements = driver.findElements(By.name(value));
+		}
+		else if(attribute.equals(Attribute.tagName)){
+			webElements = driver.findElements(By.tagName(value));
+		}
+		if(webElements.size() > Math.abs(index)) {
+			return webElements.get(Math.abs(index));
+		}
+		else {
+			return null;
+		}
 	}
 
 }

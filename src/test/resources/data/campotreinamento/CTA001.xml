@@ -2,8 +2,9 @@
 <massaDados>
 	<nome>George Bush</nome>
 	<endereco>Avenida das Nações Unidas</endereco>
+	<numero>1220</numero>
 	<cep>05260000</cep>
-	<profissao>Propietário de Empresa</profissao>
+	<profissao>Empresário</profissao>
 	<carro>Sim</carro>
 	<moto>Sim</moto>
 	<utilitario>Sim</utilitario>
