@@ -104,7 +104,7 @@ public class Common {
 		
 	}
 	public boolean checkValue(String value) {
-		if(value.equalsIgnoreCase("sim")) {
+		if(value.equalsIgnoreCase("sim") || value.equalsIgnoreCase("ok")) {
 			return true;
 		}
 		else {

@@ -1,6 +1,7 @@
 package com.github.marcosws.nav.campotreinamento;
 
 import com.github.marcosws.base.campotreinamento.CadastroBasico;
+import com.github.marcosws.core.Validation;
 import com.github.marcosws.front.campotreinamento.CadastroBasicoFront;
 import com.github.marcosws.utils.Common;
 
@@ -10,7 +11,10 @@ public class CadastroBasicoNav {
 		
 		CadastroBasico cadastroBasico = new CadastroBasico();
 		CadastroBasicoFront cadastroBasicoFront = new CadastroBasicoFront();
+		Validation validacao = new Validation();
 		Common common = new Common();
+		
+		validacao.validaTexto("Cadastro Basico", cadastroBasicoFront.validaTitulo(), "Titulo da Tela: Cadastro Basico");
 		
 		cadastroBasico.carregaMassa(nomeClasse);
 		

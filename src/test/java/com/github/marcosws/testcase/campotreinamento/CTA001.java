@@ -19,13 +19,11 @@ public class CTA001 {
 		CadastroBasicoNav cadastroBasicoNav = new CadastroBasicoNav();
 		cadastroBasicoNav.executaCadastroBasico(this.getClass().getSimpleName());
 		
-		
 		GeralNav geralNav = new GeralNav();
 		geralNav.executaGeral(this.getClass().getSimpleName());
 		
 		EmpresasNav empresasNav = new EmpresasNav();
 		empresasNav.executaEmpresas(this.getClass().getSimpleName());
-		
 		
 		ConsultaNav consultaNav = new ConsultaNav();
 		consultaNav.executaConsulta(this.getClass().getSimpleName());

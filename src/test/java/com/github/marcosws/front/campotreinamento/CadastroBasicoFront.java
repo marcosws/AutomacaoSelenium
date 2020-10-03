@@ -10,6 +10,15 @@ public class CadastroBasicoFront extends BasePage{
 		this.setHighLight(true);
 	}
 	
+	public String validaTitulo() {
+		if(this.waitElement(Attribute.xpath, "/html/body/div[1]/form/h2", 20)) {
+			return this.getTextElement(Attribute.xpath, "/html/body/div[1]/form/h2");
+		}
+		else {
+			return "titulo não foi encontrado!";
+		}
+	}
+	
 	public void digitaNome(String nome) {
 		this.editElement(Attribute.tagName, "input", nome, 0);
 	}

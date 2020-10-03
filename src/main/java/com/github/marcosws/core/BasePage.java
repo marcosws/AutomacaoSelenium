@@ -6,7 +6,9 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 import com.github.marcosws.utils.Common;
 
@@ -40,6 +42,12 @@ public class BasePage {
 	
 	protected void clickElement(Attribute attribute, String value) {
 		WebElement webElement = this.loadElement(attribute, value);
+		this.highLight(webElement);
+		webElement.click();
+	}
+	
+	protected void clickElement(Attribute attribute, String value, int index) {
+		WebElement webElement = this.loadElement(attribute, value, index);
 		this.highLight(webElement);
 		webElement.click();
 	}
@@ -82,8 +90,6 @@ public class BasePage {
 		select.selectByIndex(itemIndex);
 	}
 
-	
-	
 	protected boolean ckeckedElement(Attribute attribute, String value) {
 		WebElement webElement = this.loadElement(attribute, value);
 		this.highLight(webElement);
@@ -100,11 +106,39 @@ public class BasePage {
 		return webElement.getAttribute("value");
 	}
 	
-	
-	protected String dialogBox(boolean confirm){
+	protected boolean waitElement(Attribute attribute, String value, int timeOutSeconds) {
+		WebDriverWait webDriverWait = new WebDriverWait(driver,timeOutSeconds);
+		WebElement webElement = null;
+		try {
+			if(attribute.equals(Attribute.id)){
+				webElement = webDriverWait.until(ExpectedConditions.elementToBeClickable(By.id(value)));
+			}
+			else if(attribute.equals(Attribute.className)){
+				webElement = webDriverWait.until(ExpectedConditions.elementToBeClickable(By.className(value)));
+			}
+			else if(attribute.equals(Attribute.name)){
+				webElement = webDriverWait.until(ExpectedConditions.elementToBeClickable(By.name(value)));
+			}
+			else if(attribute.equals(Attribute.tagName)){
+				webElement = webDriverWait.until(ExpectedConditions.elementToBeClickable(By.tagName(value)));
+			}
+			else if(attribute.equals(Attribute.xpath)){
+				webElement = webDriverWait.until(ExpectedConditions.elementToBeClickable(By.xpath(value)));
+			}
+		}
+		catch(Exception e) {
+			return false;
+		}
+		return webElement.isDisplayed();
+		
+	}
+	@Deprecated
+	protected String dialogBox(boolean confirm, String inputText ,int timeOutSeconds){
 		Common common = new Common();
-		common.sleep(3000);
+		new WebDriverWait(driver, timeOutSeconds).until(ExpectedConditions.alertIsPresent());
+		driver.switchTo().alert().sendKeys(inputText);
 		String textDialogBox = driver.switchTo().alert().getText();
+		common.sleep(3000);
 		if(confirm){
 			driver.switchTo().alert().accept();
 		}
@@ -113,9 +147,56 @@ public class BasePage {
 		}
 		return textDialogBox;
 	}
-	protected boolean waitElement(Attribute attribute, String value) {
-		return highLight;
-		
+	@Deprecated
+	protected String dialogBox(boolean confirm, int timeOutSeconds){
+		Common common = new Common();
+		new WebDriverWait(driver, timeOutSeconds).until(ExpectedConditions.alertIsPresent());
+		String textDialogBox = driver.switchTo().alert().getText();
+		common.sleep(3000);
+		if(confirm){
+			driver.switchTo().alert().accept();
+		}
+		else{
+			driver.switchTo().alert().dismiss();
+		}
+		return textDialogBox;
+	}
+	protected String dialogBox(boolean confirm, String inputText){
+		String textDialogBox = "";
+		try {
+			Common common = new Common();
+			driver.switchTo().alert().sendKeys(inputText);
+			textDialogBox = driver.switchTo().alert().getText();
+			common.sleep(3000);
+			if(confirm){
+				driver.switchTo().alert().accept();
+			}
+			else{
+				driver.switchTo().alert().dismiss();
+			}
+		}
+		catch(Exception e) {
+			return "";
+		}
+		return textDialogBox;
+	}
+	protected String dialogBox(boolean confirm){
+		String textDialogBox = "";
+		try {
+			Common common = new Common();
+			textDialogBox = driver.switchTo().alert().getText();
+			common.sleep(3000);
+			if(confirm){
+				driver.switchTo().alert().accept();
+			}
+			else{
+				driver.switchTo().alert().dismiss();
+			}
+		}
+		catch(Exception e) {
+			return "";
+		}
+		return textDialogBox;
 	}
 	
 	protected void executeJavaScript(String script, WebElement webElement, String arguments) {
