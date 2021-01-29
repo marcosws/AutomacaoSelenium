@@ -3,6 +3,7 @@ package com.github.marcosws.nav.cadastrounico;
 import com.github.marcosws.base.cadastrounico.CadastroCliente;
 import com.github.marcosws.base.cadastrounico.TipoDeCadastro;
 import com.github.marcosws.front.cadastrounico.CadastroClienteFront;
+import com.github.marcosws.core.LogTest;
 import com.github.marcosws.core.Validation;
 import com.github.marcosws.utils.Common;
 
@@ -13,13 +14,13 @@ public class CadastroClienteNav {
 	
 	public void executaCadastroCliente(String nomeClasse) {
 		
-		Validation validacao = new Validation();
 		cadastroCliente.carregaMassa(nomeClasse);
+		LogTest logTest = new LogTest();
 		
 		this.preencheCadastro();
 		
 		if(!(cadastroCliente.isCadastrar() ^ cadastroCliente.isLimpar())) {
-			validacao.falha("O Botão Cadastrar está como [" + cadastroCliente.isCadastrar() + "] e o Botão Limpar está como [" + cadastroCliente.isLimpar() + "], Deve estar um como Verdadeiro eo outro Falso no arquivo json.");
+			logTest.LogFail("O Botão Cadastrar está como [" + cadastroCliente.isCadastrar() + "] e o Botão Limpar está como [" + cadastroCliente.isLimpar() + "], Deve estar um como Verdadeiro eo outro Falso no arquivo json.");
 		}
 		else if(cadastroCliente.isCadastrar()) {
 			
@@ -27,11 +28,11 @@ public class CadastroClienteNav {
 			if(cadastroCliente.isValidaMensagem()) {
 				if(cadastroCliente.getAceitarMensagem().equalsIgnoreCase("Não")){
 					this.validaMensagem(false);
-					validacao.log("Validação - Opção da Mensagem: [" + cadastroCliente.getAceitarMensagem() + "]");
+					logTest.LogInfo("Validação - Opção da Mensagem: [" + cadastroCliente.getAceitarMensagem() + "]");
 				} 
 				else if(cadastroCliente.getAceitarMensagem().equalsIgnoreCase("Sim")){
 					this.validaMensagem(true);
-					validacao.log("Validação - Opção da Mensagem: [" + cadastroCliente.getAceitarMensagem() + "]");
+					logTest.LogInfo("Validação - Opção da Mensagem: [" + cadastroCliente.getAceitarMensagem() + "]");
 				}
 				else {
 					this.validaMensagem(true);
@@ -53,12 +54,12 @@ public class CadastroClienteNav {
 			if(cadastroCliente.isValidaMensagem()) {
 				if(cadastroCliente.getAceitarMensagem().equalsIgnoreCase("Não")){
 					this.validaMensagem(false);
-					validacao.log("Validação - Opção da Mensagem: [" + cadastroCliente.getAceitarMensagem() + "]");
+					logTest.LogInfo("Validação - Opção da Mensagem: [" + cadastroCliente.getAceitarMensagem() + "]");
 					this.validaCamposCadastroVazio(false);
 				}
 				else {
 					this.validaMensagem(true);
-					validacao.log("Validação - Opção da Mensagem: [" + cadastroCliente.getAceitarMensagem() + "]");
+					logTest.LogInfo("Validação - Opção da Mensagem: [" + cadastroCliente.getAceitarMensagem() + "]");
 					this.validaCamposCadastroVazio(true);
 				}
 			}

@@ -8,6 +8,8 @@ import com.github.marcosws.context.cadastrounico.CadastroUnico;
 import com.github.marcosws.nav.cadastrounico.CadastroClienteNav;
 import com.github.marcosws.nav.cadastrounico.ParametrosCadastroNav;
 
+import reglog.logs.execution.Log;
+
 public class CTA050 {
 	
 	/*
@@ -25,6 +27,10 @@ public class CTA050 {
 
 	@Before
 	public void startApplication() {
+		
+		Log.title("CTA050 - Realizar o cadastro de cliente para pessoa jurídica com parametrização selecionando Apresentar mensagem de confirmação antes de limpar os campos" + 
+				" preenchendo todos os campos e acionando o botão Limpar aceitando a mensagem.");
+		
 		CadastroUnico cadastroUnico = new CadastroUnico();
 		cadastroUnico.iniciarCadastroUnico();
 	}

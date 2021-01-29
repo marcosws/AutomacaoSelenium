@@ -8,6 +8,8 @@ import com.github.marcosws.context.cadastrounico.CadastroUnico;
 import com.github.marcosws.nav.cadastrounico.CadastroClienteNav;
 import com.github.marcosws.nav.cadastrounico.ParametrosCadastroNav;
 
+import reglog.logs.execution.Log;
+
 public class CTA042 {
 	
 	/*
@@ -25,6 +27,10 @@ public class CTA042 {
 
 	@Before
 	public void startApplication() {
+		
+		Log.title("CTA042 - Realizar o cadastro de cliente para pessoa jurídica com parametrização selecionando Apresentar label informativa" + 
+				" e omitindo o preenchimento do campo CNPJ e preenchendo demais campos com dados válidos.");
+		
 		CadastroUnico cadastroUnico = new CadastroUnico();
 		cadastroUnico.iniciarCadastroUnico();
 	}

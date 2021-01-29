@@ -11,6 +11,8 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.ie.InternetExplorerDriver;
 import org.openqa.selenium.opera.OperaDriver;
 
+import reglog.logs.execution.Log;
+
 public class DriverFactory {
 	
 	private static WebDriver driver = null;
@@ -42,18 +44,22 @@ public class DriverFactory {
 		String operaDriverPath = userPath + partialPath + properties.getProperty("driverfactory.driverpath.opera");
 
 		if(browser.equals(Browser.CHROME)){
+			Log.info("Iniciando webdriver: CHROME");
 			System.setProperty("webdriver.chrome.driver",chromeDriverPath);
 			driver = new ChromeDriver();
 		}
 		else if(browser.equals(Browser.FIREFOX)){
+			Log.info("Iniciando webdriver: FIREFOX");
 			System.setProperty("webdriver.gecko.driver",firefoxDriverPath);
 			driver = new FirefoxDriver();
 		}
 		else if(browser.equals(Browser.IE)){
+			Log.info("Iniciando webdriver: IE");
 			System.setProperty("webdriver.ie.driver",ieDriverPath);
 			driver = new InternetExplorerDriver();
 		}
 		else if(browser.equals(Browser.OPERA)){
+			Log.info("Iniciando webdriver: OPERA");
 			System.setProperty("webdriver.opera.driver",operaDriverPath);
 			driver = new OperaDriver();
 		}

@@ -3,7 +3,7 @@ package com.github.marcosws.base.cadastrounico;
 import org.json.simple.JSONObject;
 import org.json.simple.JSONValue;
 
-import com.github.marcosws.core.Validation;
+import com.github.marcosws.core.LogTest;
 import com.github.marcosws.utils.Common;
 
 public class ParametrosCadastro {
@@ -30,10 +30,8 @@ public class ParametrosCadastro {
 			
 		}
 		catch(NullPointerException e){
-			
-			//e.printStackTrace();
-			Validation validacao = new Validation();
-			validacao.falha("Erro no layout do arquivo Json: " + nomeClasseArquivoJson + ".json, verifique os campos no json e na classe ParametrosCadastro");
+			LogTest logTest = new LogTest();
+			logTest.LogFail("Erro no layout do arquivo Json: " + nomeClasseArquivoJson + ".json, verifique os campos no json e na classe ParametrosCadastro");
 			
 		}
 			

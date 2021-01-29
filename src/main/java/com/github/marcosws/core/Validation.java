@@ -9,20 +9,11 @@ public class Validation {
 		}
 		else if(esperado.equals(gerado)){
 			logTest.LogAssert("A validação do campo: [" + rotulo + "] passou, esperado: [" + esperado + "] e gerado: [" + gerado +"]", esperado, gerado);
+			
 		}
 		else{
 			logTest.LogAssert("A validação do campo: [" + rotulo + "] falhou, esperado: [" + esperado + "] e gerado: [" + gerado +"]", esperado, gerado);
 		}
 	}
 	
-	public void falha(String texto) {
-		LogTest logTest = new LogTest();
-		logTest.LogFail(texto);
-	}
-	
-	public void log(String msg) {
-		LogTest logTest = new LogTest();
-		logTest.LogInfo(msg);
-	}
-
 }

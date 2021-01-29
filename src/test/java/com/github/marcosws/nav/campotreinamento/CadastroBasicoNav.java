@@ -5,9 +5,13 @@ import com.github.marcosws.core.Validation;
 import com.github.marcosws.front.campotreinamento.CadastroBasicoFront;
 import com.github.marcosws.utils.Common;
 
+import reglog.logs.execution.Log;
+
 public class CadastroBasicoNav {
 	
 	public void executaCadastroBasico(String nomeClasse) {
+		
+		
 		
 		CadastroBasico cadastroBasico = new CadastroBasico();
 		CadastroBasicoFront cadastroBasicoFront = new CadastroBasicoFront();
@@ -41,6 +45,7 @@ public class CadastroBasicoNav {
 		
 		cadastroBasicoFront.clicaContinuar();
 
+		Log.fail("Testando a Falha");
 		
 	}
 

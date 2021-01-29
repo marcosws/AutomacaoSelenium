@@ -7,6 +7,8 @@ import org.junit.Test;
 import com.github.marcosws.context.cadastrounico.CadastroUnico;
 import com.github.marcosws.nav.cadastrounico.CadastroClienteNav;
 
+import reglog.logs.execution.Log;
+
 public class CTA035 {
 	
 	/*
@@ -22,6 +24,10 @@ public class CTA035 {
 
 	@Before
 	public void startApplication() {
+		
+		Log.title("CTA035 - Realizar o cadastro de cliente para pessoa jurídica sem parametrização (Apresentar caixa de dialogo)" + 
+				" omitindo o preenchimento do campo Celular, E-Mail e preenchendo demais campos com dados válidos.");
+		
 		CadastroUnico cadastroUnico = new CadastroUnico();
 		cadastroUnico.iniciarCadastroUnico();
 	}

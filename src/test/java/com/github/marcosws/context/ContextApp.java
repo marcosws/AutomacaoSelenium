@@ -11,6 +11,4 @@ public class ContextApp {
 	public static final String ADDRESS_CAMPO_TREINAMENTO = typeProtocol +  appPath + defaultPartialPath + "prototipo-campo-treinamento.html";
 	public static final String ADDRESS_TECLADO_VIRTUAL =  typeProtocol + appPath + defaultPartialPath + "prototipo-teclado-virtual"; 
 	
-
-
 }
