@@ -34,5 +34,8 @@
 			<attribute name="maven.pomderived" value="true"/>
 		</attributes>
 	</classpathentry>
+	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/4"/>
+	<classpathentry kind="lib" path="C:/Projetos/Java/eclipse/AutomacaoSelenium/lib/reglog-1.0.0.jar"/>
+	<classpathentry kind="lib" path="C:/Projetos/Java/eclipse/AutomacaoSelenium/lib/derby.jar"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>

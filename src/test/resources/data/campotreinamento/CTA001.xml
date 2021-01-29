@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<massaDados>
+	<nome>George Bush</nome>
+	<endereco>Avenida das Nações Unidas</endereco>
+	<numero>1220</numero>
+	<cep>05260000</cep>
+	<profissao>Empresário</profissao>
+	<carro>Sim</carro>
+	<moto>Sim</moto>
+	<utilitario>Sim</utilitario>
+	<montadora>Saab</montadora>
+    <estado>PE</estado>
+	<nivel>Nível 3</nivel>
+	<percentual1>4%</percentual1>
+	<percentual2>5%</percentual2>
+	<alert>Sim</alert>
+	<mensagemAlert>Esta é uma mensagem do Alert!</mensagemAlert>
+	<confirm>Sim</confirm>
+	<aceitaConfirm>OK</aceitaConfirm>
+	<mensagemConfirm>Você confirma está mensagem?</mensagemConfirm>
+	<prompt>Sim</prompt>
+	<aceitaPrompt>OK</aceitaPrompt>
+	<mensagemPrompt>Digite uma mensagem:</mensagemPrompt>
+	<textoPrompt>Validando o prompt</textoPrompt>
+</massaDados>

@@ -1,0 +1,53 @@
+<!-- Desenvolvido por: Marcos Willian de Souza Data: 02/07/2020 - http://github.com/marcosws -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pagina 1</title>
+    <style>
+        html{
+            background-color: white;
+        }
+    </style>
+    <script language="javascript">
+        function msgdelay(){
+            sleep(7000);
+            alert("Mensagem demorada!");
+        }
+        function sleep(miliseconds){
+            var start = new Date().getTime();
+            while(true){
+                if((new Date().getTime() - start) > miliseconds){
+                    break;
+                }
+            }
+        }
+    </script>
+</head>
+<body>
+    <h3>Pagina 1</h3>
+    <form>
+        <label>Nome:</label><br/>
+        <input type="text"class="iframe-form"/><br/>
+        <label>Genero:</label><br/>
+        <input type="radio" name="rb-genero" class="iframe-form"/><label>Masculino</label>
+        <input type="radio" name="rb-genero" class="iframe-form"/><label>Feminino</label><br/><br/>
+        <input type="checkbox" class="iframe-form" checked/><label>Receber Notificações por E-mail</label><br/>
+        <input type="checkbox" class="iframe-form"/><label>Receber Notificações por SMS</label><br/><br/>
+        <label>Cargo:</label><br/>
+        <select id="cargo" name="cargo">
+            <option value="anl-sist">Analista de Sistemas</option>
+            <option value="anl-test">Analista de Teste</option>
+            <option value="anl-requ">Analista de Requisitos</option>
+            <option value="anl-bi00">Analista BI</option>
+            <option value="anl-dba0">Analista DBA</option>
+            <option value="anl-dese">Desenvolvedor</option>
+            <option value="anl-esta">Estagiario</option>
+        </select><br><br>
+        <input type="button" id="OK" value="OK" onclick="alert('Você clicou em OK.');" />
+        <input type="button" value="Sobre" onclick="alert('Formulario com Iframe');"/>
+        <input type="button" value="Mensagem Demorada" onclick="msgdelay();"/>
+    </form>
+</body>
+</html>

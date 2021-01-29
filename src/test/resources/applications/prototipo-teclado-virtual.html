@@ -1,0 +1,276 @@
+<!-- Desenvolvido por: Marcos Willian de Souza   -->
+<!-- Data: 02/07/2020   -->
+<!-- Github: http://github.com/marcosws  -->
+<!-- Data da ultima correção 15/09/2020  -->
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>:: Teclado ::</title>
+    <style>
+        html{
+            background-color:black;
+        }
+        h1{
+            color: chartreuse;
+            margin-left: 20px;
+			font-family: Arial;
+        }
+        .teclado{
+            width: 80px;
+            height: 80px;
+            color:black;
+            background-color: chartreuse;
+            border: 5px solid chartreuse;
+			border-left: none;
+			border-right: none;
+			border-top: none;
+        }
+        #container{
+            background-color: black;
+           /* margin-top: 20px;
+            margin-left: 20px; */
+			margin: 50px auto;
+			width: 800px;
+			border: 1px solid chartreuse;
+			box-shadow: 5px 5px green;
+        }
+		hr{
+			border: 1px solid chartreuse;
+			width: 760px;
+			margin-right: 16px;
+		}
+		small{
+			text-align: center;
+			/* margin: 0 auto; */
+			color: chartreuse;
+		}
+		form{
+			margin-left: 20px;
+			margin-bottom: 20px;
+		}
+        .dados-senha{
+            background-color:black;
+            color: chartreuse;
+        }
+        #qtd-senha,
+        #gerar-senha,
+        #result-senha{
+            border: 1px solid chartreuse;
+            color: chartreuse;
+        }
+		.teclado:disabled{ 
+			border-bottom: 5px solid grey;
+			/* border-right: 5px solid grey; */
+		}
+		.teclado:enabled{
+			border-bottom: 5px solid green;
+			/* border-right: 5px solid green; */
+		}
+    </style>
+    <script language="javascript">
+
+        var senha = "";
+        var senha_digitada = "";
+		var qtd_dig = 0;
+        
+        function gerarSenha(){
+
+            let qtd_senha = document.getElementById('qtd-senha');
+            let gerar_senha = document.getElementById('gerar-senha');
+            let result_senha = document.getElementById('result-senha');
+
+            if(Number.isInteger(parseInt(qtd_senha.value))){
+                if(verificaNumeroPar(parseInt(qtd_senha.value))){
+                    if(parseInt(qtd_senha.value) > 12){
+                        alert("Numero maior, deve ser entre 4 e 12!");
+                    }
+                    else if(parseInt(qtd_senha.value) < 4){
+                        alert("Numero menor, deve ser entre 4 e 12!");
+                    }
+                    else{
+                        senha = "";
+                        let n = parseInt(qtd_senha.value);
+                        let i;
+                        let a;
+                        for(i=1; i<=n; i++){
+                            a =  Math.round(Math.random() * 9);
+                            senha += a.toString();
+                        }
+                        result_senha.value = '';
+                        result_senha.value = senha;
+                    }
+                }
+                else{
+                    alert("Numero deve ser par!")
+                }
+            }
+            else{
+                alert("No campo Quantidade de Digitos, digitar numeros pares de numero de 4 a 12!")
+            }
+
+        }
+        function verificaNumeroPar(num){
+            if((num % 2) === 0)
+                return true;
+            return false;
+        }
+        function gerarSequenciaRandomicaBotoes(){
+
+            let numero = 0;
+            let numger = "";
+            let btnrange = [0,0,0,0,0];
+            let i;
+            let cont = 0;
+            let check = false;
+
+            while(true){
+                numero = Math.floor((Math.random() * 5) + 1);
+                if(!numger.includes(numero.toString())){
+                    btnrange[cont] = numero;
+                    cont++;
+                }
+                check = false;
+                for(i=1; i<=5; i++){
+                    if(!numger.includes(i.toString()))
+                        check = true;
+                }
+                if(!check)
+                    break;
+                numger = numger + numero.toString();
+            }
+
+            document.getElementById('btn1').value = retornaNome(btnrange[0]);
+            document.getElementById('btn2').value = retornaNome(btnrange[1]);
+            document.getElementById('btn3').value = retornaNome(btnrange[2]);
+            document.getElementById('btn4').value = retornaNome(btnrange[3]);
+            document.getElementById('btn5').value = retornaNome(btnrange[4]);
+
+            function retornaNome(posicao){
+
+                if(posicao === 1){
+                    return "1 ou 2";
+                }
+                else if(posicao === 2){
+                    return "3 ou 4";
+                }
+                else if(posicao === 3){
+                    return "5 ou 6";
+                }
+                else if(posicao === 4){
+                    return "7 ou 8";
+                }
+                else if(posicao === 5){
+                    return "9 ou 0";
+                }
+            }
+        }
+        function acessar(){
+
+			let senha_str = senha_digitada.replaceAll(" ou ","");
+			let checkSenha = true;
+
+			let senha_arr = senha_str.substring(0, senha_str.length -1).split(";");
+			for(let i = 0; i < senha.length; i++){
+				if(!senha_arr[i].includes(senha.substr(i, 1))){
+					checkSenha = false;
+				}
+			}
+
+			if(senha !== ""){
+				if(checkSenha){
+					alert("Acesso permitido!")
+				}
+				else{
+					alert("Acesso Negado!");
+				}
+			}
+			else{
+				alert("Acesso Negado!");
+			}
+			senha = "";
+			senha_digitada = "";
+			habilitaBotoesTeclado();
+				
+        }
+        function recuperaBotao(){
+			
+			qtd_dig++;
+			let result_senha = document.getElementById('result-senha').value;
+			if(result_senha.length === 0){
+				qtd_dig = 0;
+				senha = "";
+				senha_digitada = "";
+				alert("Favor gerar sua senha!");
+			}
+			else{
+				
+				var elemento = document.getElementById('virtualkey');
+				elemento.addEventListener('click',recBtn = function(e){
+					var id = e.target.id;
+					if(id !== "btn-entrar"){
+						senha_digitada = senha_digitada + document.getElementById(id).value + ";";
+					}
+					elemento.removeEventListener('click', recBtn);
+				},false);
+					
+				if(qtd_dig >= result_senha.length){
+					qtd_dig = 0;
+					habilitaBotaoEntrar();
+				}
+			}
+
+        }
+		function habilitaBotaoEntrar(){
+			document.getElementById('btn-entrar').disabled = false;
+			document.getElementById('btn1').disabled = true;
+			document.getElementById('btn2').disabled = true;
+			document.getElementById('btn3').disabled = true;
+			document.getElementById('btn4').disabled = true;
+			document.getElementById('btn5').disabled = true;
+		}
+		function habilitaBotoesTeclado(){
+			document.getElementById('btn-entrar').disabled = true;
+			document.getElementById('btn1').disabled = false;
+			document.getElementById('btn2').disabled = false;
+			document.getElementById('btn3').disabled = false;
+			document.getElementById('btn4').disabled = false;
+			document.getElementById('btn5').disabled = false;
+		}
+    </script>
+</head>
+<body onload="gerarSequenciaRandomicaBotoes();">
+    <div id="container">
+	<h1>Teclado Virtual</h1>
+	
+        <form>
+			<hr />
+            <label class="dados-senha">Quantidade de Digitos:</label><br />
+            <input type="number" id="qtd-senha" class="dados-senha" min="4" max="12" step="2" value="6" size="12"><br /><br />
+            <input type="button" id="gerar-senha" class="dados-senha" value="Gerar Senha" onclick="gerarSenha();" /><br /><br />
+            <label class="dados-senha">Sua Senha é:</label><br />
+            <input type="text" id="result-senha" class="dados-senha" readonly="true"/><br />
+            <br />
+			<hr />
+            <br />
+            <table id="virtualkey">
+                <tr>
+                    <td><input type="button" id="btn1" class="teclado" onclick="recuperaBotao();" value="0 ou 1"></td>
+                    <td><input type="button" id="btn2" class="teclado" onclick="recuperaBotao();" value="2 ou 3"></td>
+                    <td><input type="button" id="btn3" class="teclado" onclick="recuperaBotao();" value="4 ou 5"></td>
+                </tr>
+                <tr>
+                    <td><input type="button" id="btn4" class="teclado" onclick="recuperaBotao();" value="6 ou 7"></td>
+                    <td><input type="button" id="btn5" class="teclado" onclick="recuperaBotao();" value="8 ou 9"></td>
+                    <td><input type="button" id="btn-entrar" class="teclado"  value="Entrar" onclick="acessar();" disabled></td>
+                </tr>
+            </table>
+			<hr />
+			<small>Teclado Virtual - 2020</small><br />
+			<small>Desenvolvido por: Marcos Willian de Souza</small><br />
+			<small>Treinamento para automação de testes</small><br />
+        </form>
+    </div>
+</body>
+</html>

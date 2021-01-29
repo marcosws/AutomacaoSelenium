@@ -1,0 +1,680 @@
+<!-- Desenvolvido por: Marcos Willian de Souza Data: 02/07/2020 - http://github.com/marcosws -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prototipo</title>
+    <style>
+        html{
+            background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAACCAIAAAAW4yFwAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAAQSURBVBhXYzh8+DDD////ARO4BUetVbrHAAAAAElFTkSuQmCC');
+        }
+        h1, h3{
+            margin-left: 30px;
+        }
+		select{
+			width: 100px;
+		}
+		fieldset{
+			margin-right: 20px;
+		}
+        hr{
+            color: grey;
+            background-color: lightgrey;
+            height: 1px;
+            margin-right: 20px;
+        }
+        .btnmsg{
+            width: 90px;
+        }
+        #formulario1,
+        #formulario2,
+        #formulario3,
+        #formulario4{
+            background-color: white;
+            margin-left: 30px;
+            margin-top: 20px;
+            width: 900px;
+        }
+        .frm{
+            margin-left: 20px;
+        }
+        #formulario1{
+            display:inline-block;
+        }
+        #formulario2{
+            display:none;
+        }
+        #formulario3{
+            display:none;
+        }
+        #formulario4{
+            display:none;
+        }
+        table{
+            font-family: arial, sans-serif;
+            font-size: 10px;
+            border-collapse: collapse;
+            width: 890px; 
+        }
+        td, th {
+            border: 1px solid #dddddd;
+            text-align: left;
+            /* padding: 4px; */
+        }
+        tr:nth-child(even) {
+            background-color: #dddddd;
+        }
+        thead, tbody{
+          display: block;  
+          width: 90%;
+        }
+        tbody{
+           overflow-y: scroll;
+           height: 130px;
+         }
+        .table th{
+            width: 296px; 
+            padding: 3px;
+        }
+        .table td {
+            padding: 3px;
+            width:  296px; 
+        }
+    </style>
+    <script language="javascript">
+        function proximoFormulario(){
+            
+            sleep(11000);
+            
+            var f1 = document.getElementById('formulario1');
+            var f2 = document.getElementById('formulario2');
+            var f3 = document.getElementById('formulario3');
+            if(f1.style.display !== 'none'){
+                f2.style.display = 'inline-block';
+                f1.style.display = 'none';
+            }
+            else if(f2.style.display !== 'none'){
+                f3.style.display = 'inline-block';
+                f2.style.display = 'none';
+            }
+            else if(f3.style.display !== 'none'){
+                f1.style.display = 'inline-block';
+                f3.style.display = 'none';
+            }
+        }
+        function retrocederFormulario(){
+            var f1 = document.getElementById('formulario1');
+            var f2 = document.getElementById('formulario2');
+            var f3 = document.getElementById('formulario3');
+
+            if(f2.style.display !== 'none'){
+                f1.style.display = 'inline-block';
+                f2.style.display = 'none';
+            }
+            else if(f3.style.display !== 'none'){
+                f2.style.display = 'inline-block';
+                f3.style.display = 'none';
+            }
+        }
+        function sleep(miliseconds){
+            var start = new Date().getTime();
+            while(true){
+                if((new Date().getTime() - start) > miliseconds){
+                    break;
+                }
+            }
+        } 
+        function alertMsg(){
+            sleep(2000);
+            alert("Esta é uma mensagem do Alert!");
+            document.getElementsByClassName('displaylb')[0].innerHTML = "Você clicou no botão do Alert";
+        }
+        function confirmMsg(){
+            sleep(4000);
+            var result = confirm("Você confirma está mensagem?");
+            var msg = "";
+            if(result){
+                msg = "OK";
+            }
+            else{
+                msg = "Cancelar";
+            }
+            document.getElementsByClassName('displaylb')[1].innerHTML = "Você clicou no botão do Confirm e Clicou em: " + msg;
+        }
+        function promptMsg(){
+            sleep(14000);
+            var result = prompt("Digite uma mensagem:");
+            var msg = "";
+            if(result != null){
+                if(result != ""){
+                    msg = ", confirmou o prompt e digitou a mensagem: " + result;
+                }
+                else{
+                    msg = " e confirmou o prompt mas não digitou a mensagem!"
+                }
+            }
+            else{
+                msg = " mas não confirmou o prompt!"
+            }
+            document.getElementsByClassName('displaylb')[2].innerHTML = "Você clicou no botão do Confirm" + msg;
+        }
+        function confirmarFormulario(){
+
+            var f3 = document.getElementById('formulario3');
+            var f4 = document.getElementById('formulario4');
+            f3.style.display = 'none';
+            f4.style.display = 'inline-block';
+
+            //document.getElementsByTagName('table')[1].getElementsByTagName('tr')[1].getElementsByTagName('td')[0].innerText;
+           // document.getElementsByTagName('table')[4].getElementsByTagName('tr').length;
+
+           var nome = document.querySelectorAll('input[class="form-m1"]')[0].value;
+           var endr = document.querySelectorAll('input[class="form-m1"]')[1].value;
+		   var numero = document.querySelectorAll('input[class="form-m1"]')[2].value;
+           var cep = document.querySelectorAll('input[class="form-m1"]')[3].value;
+
+            if(nome == "")
+                nome = "O Nome não foi Preenchido!"
+           document.getElementsByTagName('table')[2]
+           .getElementsByTagName('tr')[0]
+           .getElementsByTagName('label')[1].innerHTML = nome;
+
+           if(endr == "")
+                endr = "O Endereço não foi Preenchido!"
+           document.getElementsByTagName('table')[2]
+           .getElementsByTagName('tr')[1]
+           .getElementsByTagName('label')[1].innerHTML = endr;
+
+		   if(numero == "")
+                numero = "O Cep não foi Preenchido!"
+           document.getElementsByTagName('table')[2]
+           .getElementsByTagName('tr')[2]
+           .getElementsByTagName('label')[1].innerHTML = numero;
+
+           if(cep == "")
+                cep = "O Cep não foi Preenchido!"
+           document.getElementsByTagName('table')[2]
+           .getElementsByTagName('tr')[3]
+           .getElementsByTagName('label')[1].innerHTML = cep;
+		   
+           var prof_est = document.querySelectorAll('input[class="form-m1"]')[4].checked;
+           var prof_clt = document.querySelectorAll('input[class="form-m1"]')[5].checked;
+           var prof_emp = document.querySelectorAll('input[class="form-m1"]')[6].checked;
+
+           if(prof_est){
+                document.getElementsByTagName('table')[2]
+                .getElementsByTagName('tr')[4]
+                .getElementsByTagName('label')[1].innerHTML = "Estudande";
+           }
+           else if(prof_clt){
+                document.getElementsByTagName('table')[2]
+                .getElementsByTagName('tr')[4]
+                .getElementsByTagName('label')[1].innerHTML = "Profissional CLT";
+           }
+           else if(prof_emp){
+                document.getElementsByTagName('table')[2]
+                .getElementsByTagName('tr')[4]
+                .getElementsByTagName('label')[1].innerHTML = "Empresário";
+           }
+           else{
+                document.getElementsByTagName('table')[2]
+                .getElementsByTagName('tr')[4]
+                .getElementsByTagName('label')[1].innerHTML = "Não foi selecionado!";
+           }
+
+           var carro = document.querySelectorAll('input[name="carro"]')[0].checked;
+           var moto = document.querySelectorAll('input[name="moto"]')[0].checked;
+           var utilitario = document.querySelectorAll('input[name="utilitario"]')[0].checked;
+
+            document.getElementsByTagName('table')[2]
+            .getElementsByTagName('tr')[5]
+            .getElementsByTagName('label')[1].innerHTML = (carro ? "Sim" : "Não");
+            document.getElementsByTagName('table')[2]
+            .getElementsByTagName('tr')[6]
+            .getElementsByTagName('label')[1].innerHTML = (moto ? "Sim" : "Não");
+            document.getElementsByTagName('table')[2]
+            .getElementsByTagName('tr')[7]
+            .getElementsByTagName('label')[1].innerHTML = (utilitario ? "Sim" : "Não");
+
+
+            var combo_montadora = document.querySelector('select');
+            var montadora = combo_montadora.options[combo_montadora.selectedIndex].text;
+            document.getElementsByTagName('table')[2]
+            .getElementsByTagName('tr')[8]
+            .getElementsByTagName('label')[1].innerHTML = montadora;
+
+
+
+            var combo_estado = document.querySelectorAll('select')[1];
+            var estado = combo_estado.options[combo_estado.selectedIndex].text;
+            document.getElementsByTagName('table')[3]
+            .getElementsByTagName('tr')[0]
+            .getElementsByTagName('label')[1].innerHTML = estado;
+
+            var combo_nivel = document.querySelectorAll('select')[2];
+            var nivel = combo_nivel.options[combo_nivel.selectedIndex].text;
+            document.getElementsByTagName('table')[3]
+            .getElementsByTagName('tr')[1]
+            .getElementsByTagName('label')[1].innerHTML = nivel;
+			
+			var combo_percentual1 = document.querySelectorAll('select')[3];
+            var percentual1 = combo_percentual1.options[combo_percentual1.selectedIndex].text;
+            document.getElementsByTagName('table')[3]
+            .getElementsByTagName('tr')[2]
+            .getElementsByTagName('label')[1].innerHTML = percentual1;
+			
+			var combo_percentual2 = document.querySelectorAll('select')[4];
+            var percentual2 = combo_percentual2.options[combo_percentual2.selectedIndex].text;
+            document.getElementsByTagName('table')[3]
+            .getElementsByTagName('tr')[3]
+            .getElementsByTagName('label')[1].innerHTML = percentual2;
+
+            var alertMsg = document.getElementsByTagName('table')[0]
+            .getElementsByTagName('tr')[0]
+            .getElementsByTagName('label')[1].innerText;
+            document.getElementsByTagName('table')[3]
+            .getElementsByTagName('tr')[4]
+            .getElementsByTagName('label')[1].innerHTML = alertMsg;
+
+            var cofirmMsg = document.getElementsByTagName('table')[0]
+            .getElementsByTagName('tr')[1]
+            .getElementsByTagName('label')[1].innerText;
+            document.getElementsByTagName('table')[3]
+            .getElementsByTagName('tr')[5]
+            .getElementsByTagName('label')[1].innerHTML = cofirmMsg;
+
+            var promptMsg = document.getElementsByTagName('table')[0]
+            .getElementsByTagName('tr')[2]
+            .getElementsByTagName('label')[1].innerText;
+            document.getElementsByTagName('table')[3]
+            .getElementsByTagName('tr')[6]
+            .getElementsByTagName('label')[1].innerHTML = promptMsg;
+
+            var i;
+            for(i = 1;i < 11;i++){
+                
+                if(document.querySelectorAll('input[name="rb2.' + i + '"]')[0].checked){
+                    document.getElementsByTagName('table')[4]
+                    .getElementsByTagName('tr')[i]
+                    .getElementsByTagName('label')[1].innerHTML = "Ativa";
+                }
+                else if(document.querySelectorAll('input[name="rb2.' + i + '"]')[1].checked){
+                    document.getElementsByTagName('table')[4]
+                    .getElementsByTagName('tr')[i]
+                    .getElementsByTagName('label')[1].innerHTML = "Inativa";
+                }
+                else{
+                    document.getElementsByTagName('table')[4]
+                    .getElementsByTagName('tr')[i]
+                    .getElementsByTagName('label')[1].innerHTML = "Não foi selecionado";
+                }
+
+                if(document.querySelectorAll('input[name="trab"]')[i - 1].checked){
+                    document.getElementsByTagName('table')[4]
+                    .getElementsByTagName('tr')[i]
+                    .getElementsByTagName('label')[2].innerHTML = "Sim";
+                }
+                else{
+                    document.getElementsByTagName('table')[4]
+                    .getElementsByTagName('tr')[i]
+                    .getElementsByTagName('label')[2].innerHTML = "Não";
+                }
+            }
+
+           
+        }
+        function recarregarPagina(){
+            location.href = window.location.pathname;
+        }
+    </script>
+</head>
+<body>
+    <h1>Prototipo: Campo de Treinamento</h1>
+    <h3>Treinamento para automação de testes</h3>
+   
+    <div id="formulario1">
+        <form class="frm">
+            <h2>Cadastro Basico</h2>
+            <hr />
+            <label>Nome</label><br>
+            <input type="text" class="form-m1" /><br>
+            <label>Endereço</label><br>
+            <input type="text" class="form-m1" /><br>
+			<label>Numero</label><br>
+            <input type="number" class="form-m1" /><br>
+            <label>CEP</label><br>
+            <input type="text" class="form-m1" maxlength="8"/><br><br>
+			<fieldset>
+				<legend>Profissão</legend>
+				<input type="radio" name="rb1" class="form-m1" /><label>Estudante</label><br>
+				<input type="radio" name="rb1" class="form-m1" /><label>Profissional CLT</label><br>
+				<input type="radio" name="rb1" class="form-m1" /><label>Empresário</label><br>
+			</fieldset>
+			<fieldset>
+				<legend>Veiculo</legend>
+				<input type="checkbox" name="carro" checked /><label>Possui Carro</label><br>
+				<input type="checkbox" name="moto" /><label>Possui Moto</label><br>
+				<input type="checkbox" name="utilitario" /><label>Possui Utilitário</label><br>
+			</fieldset>
+			<br>
+            <label>Montadora</label><br>
+            <select id="cars" name="cars">
+                <option value="volvo">Volvo</option>
+                <option value="saab">Saab</option>
+                <option value="fiat">Fiat</option>
+                <option value="audi">Audi</option>
+                <option value="volkswagem">Volkswagem</option>
+                <option value="ford">Ford</option>
+                <option value="chevrolet">Chevrolet</option>
+				<option value="renault">Renault</option>
+				<option value="jeep">Jeep</option>
+				<option value="bmw">BMW</option>
+				<option value="mercedes">Mercedes-Benz</option>
+				<option value="toyota">Toyota</option>
+				<option value="honda">Honda</option>
+				<option value="hyundai">Hyundai</option>
+            </select><br><br>
+            <hr />
+            <input type="button" value="Continuar"  onclick="proximoFormulario();"/><br><br>
+        </form>
+    </div>
+    <div id="formulario2">
+        <form class="frm">
+            <h2>Geral</h2>
+            <hr />
+            <label>Estado</label><br>
+            <select id="estado" name="estado">
+                <option value="SP">SP</option>
+                <option value="MG">MG</option>
+                <option value="RJ">RJ</option>
+                <option value="ES">ES</option>
+                <option value="PE">PE</option>
+                <option value="GO">GO</option>
+            </select><br>
+            <label>Nível</label><br>
+            <select name="nivel">
+                <option value="nivel">Nível 1</option>
+                <option value="nivel">Nível 2</option>
+                <option value="nivel">Nível 3</option>
+            </select><br>
+			<label>Percentual 1</label><br>
+			<select>
+                <option value="1">1%</option>
+                <option value="2">2%</option>
+                <option value="3">3%</option>
+				<option value="4">4%</option>
+				<option value="5">5%</option>
+            </select><br>
+			<label>Percentual 2</label><br>
+			<select>
+                <option value="1">1%</option>
+                <option value="2">2%</option>
+                <option value="3">3%</option>
+				<option value="4">4%</option>
+				<option value="5">5%</option>
+            </select><br><br><br>
+            <table id="tabela">
+                <tr>
+                    <td id="bt1"><label id="bt1">Botão do Alert</label></td>
+                    <td id="bt1"><input type="button" value="Alert" class="btnmsg" onclick="alertMsg();"/></td>
+                    <td id="bt1"><label class="displaylb">No Action</label></td>
+                </tr>
+                <tr>
+                    <td id="bt2"><label id="bt2">Botão do Confirm</label></td>
+                    <td id="bt2"><input type="button" value="Confirm" class="btnmsg" onclick="confirmMsg();"/></td>
+                    <td id="bt2"><label class="displaylb">No Action</label></td>
+                </tr>
+                <tr>
+                    <td id="bt3"><label id="bt3">Botão do Prompt</label></td>
+                    <td id="bt3"><input type="button" value="Prompt" class="btnmsg" onclick="promptMsg();"/></td>
+                    <td id="bt3"><label class="displaylb">No Action</label></td>
+                </tr>
+            </table><br><br>
+            <hr />
+            <input type="button" value="Continuar" onclick="proximoFormulario();"/>
+            <input type="button" value="Voltar" onclick="retrocederFormulario();"/><br><br>
+        </form>
+    </div>
+    <div id="formulario3">
+        <form class="frm">
+            <h2>Empresas</h2>
+            <hr />
+            <table class="table">
+                <thead>
+                <tr>
+                    <th>Empresa</th>
+                    <th>Status</th>
+                    <th>Trabalhou na Empresa?</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>General Electric</td>
+                    <td>
+                        <input type="radio" name="rb2.1" class="form-m3" /><label>Ativa</label>
+                        <input type="radio" name="rb2.1" class="form-m3" /><label>Inativa</label>
+                    </td>
+                    <td><input type="checkbox" name="trab" value="emp1"/></td>
+                </tr>
+                <tr>
+                    <td>Bucyrus Erie</td>
+                    <td>
+                        <input type="radio" name="rb2.2" class="form-m3" /><label>Ativa</label>
+                        <input type="radio" name="rb2.2" class="form-m3" /><label>Inativa</label>
+                    </td>
+                    <td><input type="checkbox" name="trab" value="emp1"/></td>
+                  </tr>
+                  <tr>
+                    <td>Digital Research</td>
+                    <td>
+                        <input type="radio" name="rb2.3" class="form-m3" /><label>Ativa</label>
+                        <input type="radio" name="rb2.3" class="form-m3" /><label>Inativa</label>
+                    </td>
+                    <td><input type="checkbox" name="trab" value="emp1"/></td>
+                  </tr>
+                  <tr>
+                    <td>Seattle Computer Products</td>
+                    <td>
+                        <input type="radio" name="rb2.4" class="form-m3" /><label>Ativa</label>
+                        <input type="radio" name="rb2.4" class="form-m3" /><label>Inativa</label>
+                    </td>
+                    <td><input type="checkbox" name="trab" value="emp1"/></td>
+                  </tr>
+                  <tr>
+                    <td>AT&T</td>
+                    <td>
+                        <input type="radio" name="rb2.5" class="form-m3" /><label>Ativa</label>
+                        <input type="radio" name="rb2.5" class="form-m3" /><label>Inativa</label>
+                    </td>
+                    <td><input type="checkbox" name="trab" value="emp1"/></td>
+                  </tr>
+                  <tr>
+                    <td>Digital Equipment Corporation</td>
+                    <td>
+                        <input type="radio" name="rb2.6" class="form-m3" /><label>Ativa</label>
+                        <input type="radio" name="rb2.6" class="form-m3" /><label>Inativa</label>
+                    </td>
+                    <td><input type="checkbox" name="trab" value="emp1"/></td>
+                  </tr>
+                  <tr>
+                    <td>Honeywell</td>
+                    <td>
+                        <input type="radio" name="rb2.7" class="form-m3" /><label>Ativa</label>
+                        <input type="radio" name="rb2.7" class="form-m3" /><label>Inativa</label>
+                    </td>
+                    <td><input type="checkbox" name="trab" value="emp1"/></td>
+                  </tr> 
+                  <tr>
+                    <td>Micro Instrumentation and Telemetry Systems</td>
+                    <td>
+                      <input type="radio" name="rb2.8" class="form-m3" /><label>Ativa</label>
+                      <input type="radio" name="rb2.8" class="form-m3" /><label>Inativa</label>
+                    </td>
+                    <td><input type="checkbox" name="trab" value="emp1"/></td>
+                  </tr> 
+                  <tr>
+                    <td>Sun Microsystems</td>
+                    <td>
+                        <input type="radio" name="rb2.9" class="form-m3" /><label>Ativa</label>
+                        <input type="radio" name="rb2.9" class="form-m3" /><label>Inativa</label>
+                    </td>
+                    <td><input type="checkbox" name="trab" value="emp1"/></td>
+                </tr> 
+                <tr>
+                <td>Borland</td>
+                <td>
+                  <input type="radio" name="rb2.10" class="form-m3" /><label>Ativa</label>
+                  <input type="radio" name="rb2.10" class="form-m3" /><label>Inativa</label>
+                </td>
+                    <td><input type="checkbox" name="trab" value="emp1"/></td>
+                </tr> 
+            </tbody>
+            </table><br><br>
+            <hr />
+            <input type="button" value="Inicio"  onclick="proximoFormulario();"/>
+            <input type="button" value="Confirmar" onclick="confirmarFormulario();"/>
+            <input type="button" value="Voltar" onclick="retrocederFormulario();"/><br><br>
+        </form>
+    </div>
+    <div id="formulario4">
+        <form class="frm">
+            <h2>Consulta</h2>
+            <hr />
+            <h4>Cadastro Basico</h4>
+            <table id="cadbas">
+                <tr>
+                    <td><label class="cadbas-tab" >Nome</label></td>
+                    <td><label class="cadbas-tab" ></label></td>
+                </tr>
+                <tr>
+                    <td><label class="cadbas-tab" >Endereço</label></td>
+                    <td><label class="cadbas-tab" ></label></td>
+                </tr>
+				<tr>
+                    <td><label class="cadbas-tab" >Numero</label></td>
+                    <td><label class="cadbas-tab" ></label></td>
+                </tr>
+                <tr>
+                    <td><label class="cadbas-tab" >CEP</label></td>
+                    <td><label class="cadbas-tab" ></label></td>
+                </tr>
+                <tr>
+                    <td><label class="cadbas-tab" >Profissão</label></td>
+                    <td><label class="cadbas-tab" ></label></td>
+                </tr>
+                <tr>
+                    <td><label class="cadbas-tab" >Possui Carro</label></td>
+                    <td><label class="cadbas-tab" ></label></td>
+                </tr>
+                <tr>
+                    <td><label class="cadbas-tab" >Possui Moto</label></td>
+                    <td><label class="cadbas-tab" ></label></td>
+                </tr>
+                <tr>
+                    <td><label class="cadbas-tab" >Possui Utilitário</label></td>
+                    <td><label class="cadbas-tab" ></label></td>
+                </tr>
+                <tr>
+                    <td><label>Montadora</label></td>
+                    <td><label></label></td>
+                </tr>
+            </table>
+            <hr />
+            <h4>Geral</h4>
+            <table  id="geral">
+                <tr>
+                    <td><label>Estado</label></td>
+                    <td><label></label></td>
+                </tr>
+                <tr>
+                    <td><label>Nível</label></td>
+                    <td><label></label></td>
+                </tr>
+				<tr>
+                    <td><label>Percentual 1</label></td>
+                    <td><label></label></td>
+                </tr>
+				<tr>
+                    <td><label>Percentual 2</label></td>
+                    <td><label></label></td>
+                </tr>
+                <tr>
+                    <td><label>Botão Alert</label></td>
+                    <td><label></label></td>
+                </tr>
+                <tr>
+                    <td><label>Botão Confirm</label></td>
+                    <td><label></label></td>
+                </tr>
+                <tr>
+                    <td><label>Botão Prompt</label></td>
+                    <td><label></label></td>
+                </tr>
+            </table>
+            <hr />
+            <h4>Empresas</h4>
+            <table  id="empresas">
+                <tr>
+                    <th>Empresa</th>
+                    <th>Status</th>
+                    <th>Trabalhou na Empresa?</th>
+                </tr>
+                <tr>
+                    <td><label>General Electric</label></td>
+                    <td><label></label></td>
+                    <td><label></label></td>
+                </tr>
+                <tr>
+                    <td><label>Bucyrus Erie</label></td>
+                    <td><label></label></td>
+                    <td><label></label></td>
+                </tr>
+                <tr>
+                    <td><label>Digital Research</label></td>
+                    <td><label></label></td>
+                    <td><label></label></td>
+                </tr>
+                <tr>
+                    <td><label>Seattle Computer Products</label></td>
+                    <td><label></label></td>
+                    <td><label></label></td>
+                </tr>
+                <tr>
+                    <td><label>AT&T</label></td>
+                    <td><label></label></td>
+                    <td><label></label></td>
+                </tr>
+                <tr>
+                    <td><label>Digital Equipment Corporation</label></td>
+                    <td><label></label></td>
+                    <td><label></label></td>
+                </tr>
+                <tr>
+                    <td><label>Honeywell</label></td>
+                    <td><label></label></td>
+                    <td><label></label></td>
+                </tr>
+                <tr>
+                    <td><label>Micro Instrumentation and Telemetry Systems</label></td>
+                    <td><label></label></td>
+                    <td><label></label></td>
+                </tr>
+                <tr>
+                    <td><label>Sun Microsystems</label></td>
+                    <td><label></label></td>
+                    <td><label></label></td>
+                </tr>
+                <tr>
+                    <td><label>Borland</label></td>
+                    <td><label></label></td>
+                    <td><label></label></td>
+                </tr>
+            </table>
+            <br />
+            <hr />
+            <input type="button" value="Finalizar" onclick="recarregarPagina();"/><br><br>
+        </form>
+    </div>
+</body>
+</html>

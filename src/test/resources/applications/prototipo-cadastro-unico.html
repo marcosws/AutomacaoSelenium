@@ -1,0 +1,857 @@
+<!-- Prototipo Cadastro de Cliente -- -->
+<!-- Autor: Marcos Willian de Souza - -->
+<!-- Data: 20/04/2019 --------------- -->
+<DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>Prototipo Cadastro</title>
+		<style type="text/css">
+			*{
+				margin: 0;
+				padding: 0;
+			}
+			html{
+				//background-color: #E6E6FA;
+				color: #006400;
+				font: 100% Arial;
+				background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAADCAIAAADdv/LVAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAAUSURBVBhXYzix/znD////mRgYGAAqLwVuNtbhswAAAABJRU5ErkJggg==");
+			}
+			h1{
+				margin-top: 10px;
+			}
+			#container{
+				margin: 0 auto;
+				width: 800px;
+			}
+			#reader{
+				//position: absolute;
+			}
+			#body{
+			    margin-top: 15px;
+			   /* position: absolute; */
+				width: 800px;
+				height: 535px;
+	            border-bottom-right-radius: 10px;
+	            border-bottom-left-radius: 10px;
+			}
+			#footer{
+				background-color: #CDC9C9;
+				width: 800px;
+				height: 60px;
+				text-align: center;
+	            border-bottom-right-radius: 10px;
+	            border-bottom-left-radius: 10px;
+			}
+			#frame1{
+				display: block;
+			}
+			#frame2{
+				display: none;
+			}
+			#aba1{
+				border-bottom-color: lime;
+				background-color: lightgrey; //#B4CDCD;
+			}
+			#aba2{
+				border-bottom-color: green;
+				background-color: grey; //#7A8B8B;
+			}
+			.aba{
+				width: 140px;
+				height: 25px;
+				float: left;
+				background-color: grey;
+				border-top-right-radius: 10px;
+				border-top-left-radius: 10px;
+				border-bottom-style: solid;
+				border-bottom-width: 4px;
+				
+				text-align: center;
+				padding-top: 10px;
+				font-weight: bold;
+			}
+			.frame{
+				clear: both;
+				width: 800px;
+				height: 500px;
+				background-color: lightgrey; //#B4CDCD;
+			}
+			.label-texto{
+				display: block;
+				margin-top: 4px;
+			}
+			#aba-cadastro,
+			#aba-parametros{
+				/*margin-left: 30px;*/
+				/*margin-top: 40px;*/
+			}
+			.label-texto,
+			.caixa-texto,
+			.btform,
+			.checkbox-aut{
+				margin-left: 20px;
+			}
+			
+			.caixa-texto{
+				border: 1px solid green;
+				border-radius: 6px;
+				height: 26px;
+			}
+			
+			
+			.label-status{
+				display: inline;
+				color: red;
+			}
+			h2{
+				display: inline-block;
+				margin-top: 10px;
+				margin-left: 20px;
+				margin-bottom: 10px;
+			}
+			/* fieldset *****************/
+			#rg-tipo-cadastro{
+				width: 300px;
+				margin-left: 20px;
+				border-radius: 10px;
+			}
+			#rg-mensagem-inconsistencia,
+			#rg-mensagem-confirmacao{
+				width: 600px;
+				margin-left: 20px;
+				border-radius: 10px;
+			}
+			legend{
+				margin-left: 10px;
+				margin-bottom 6px;
+			}
+			/* fieldset *****************/
+			#pessoa-fisica{
+				display: block;
+			}
+			#pessoa-juridica{
+				display: none;
+			}
+			.btform{
+				background-color: green;
+				color: white;
+				border: none;
+				border-radius: 6px;
+				height: 26px;
+				width: 86px;
+			}
+			
+			#nome,
+			#nome-fantasia,
+			#razao-social{
+				width: 350px;
+			}
+			#cpf,
+			#cnpj,
+			#telefone,
+			#celular,{
+				width: 180px;
+			}
+			#email{
+				width: 200px;
+			}
+			#form-cadastro{
+				display: block;
+			}
+			#form-consulta{
+				display: none;
+			}
+			
+			/* Customize the label (the container) */
+			.container-radio-button,
+			.container-checkbox {
+			  display: block;
+			  position: relative;
+			  padding-left: 35px;
+			  cursor: pointer;
+			  //font-size: 22px;
+			  -webkit-user-select: none;
+			  -moz-user-select: none;
+			  -ms-user-select: none;
+			  user-select: none;
+			  margin-left: 20px;
+			}
+			
+			.container-radio-button{
+				margin-top: 4px;
+				margin-bottom: 8px;
+			}
+			.container-checkbox {
+				margin-bottom: 12px;
+			}
+			/* Hide the browser's default checkbox */
+			.container-radio-button input, 
+			.container-checkbox input {
+			  position: absolute;
+			  opacity: 0;
+			  cursor: pointer;
+			  height: 0;
+			  width: 0;
+			}
+			.checkmark {
+			  position: absolute;
+			  top: 0;
+			  left: 0;
+			  //height: 25px;
+			  //width: 25px;
+			  height: 18px;
+			  width: 18px;
+			  background-color: grey;
+			}
+			/* On mouse-over, add a grey background color */
+			.container-radio-button:hover input ~ .checkmark,
+			.container-checkbox:hover input ~ .checkmark {
+			  background-color: green;
+			}
+			/* When the checkbox is checked, add a blue background */
+			.container-radio-button input:checked ~ .checkmark,
+			.container-checkbox input:checked ~ .checkmark {
+			  background-color: green;
+			}
+			/* Create the checkmark/indicator (hidden when not checked) */
+			.checkmark:after {
+			  content: "";
+			  position: absolute;
+			  display: none;
+			}
+			/* Show the checkmark when checked */
+			.container-checkbox input:checked ~ .checkmark:after,
+			.container-radio-button input:checked ~ .checkmark:after{
+			  display: block;
+			}
+			
+			
+			/* Style the checkmark/indicator */
+			.container-checkbox .checkmark:after {
+			  //left: 9px;
+			  //top: 5px;
+			  left: 5px;
+			  top: 1px;
+			  width: 5px;
+			  height: 10px;
+			  border: solid white;
+			  border-width: 0 3px 3px 0;
+			  -webkit-transform: rotate(45deg);
+			  -ms-transform: rotate(45deg);
+			  transform: rotate(45deg);
+			} 
+			
+			/* Style the indicator (dot/circle) */
+			.container-radio-button .checkmark:after {
+			  //top: 9px;
+			  //left: 9px;
+			  top: 5px;
+			  left: 5px;
+			  width: 8px;
+			  height: 8px;
+			  background: white;
+			  border-radius: 50%;
+			}
+			#radio1,
+			#radio2,
+			#radio3,
+			#radio4{
+				border-radius: 50%;
+			}
+		</style>
+		<script language="javascript">
+			function apresentaAba(){
+				document.onclick = function(event){
+				
+					var aba1 = document.getElementById('aba1');
+					var aba2 = document.getElementById('aba2');
+					var frame1 = document.getElementById('frame1');
+					var frame2 = document.getElementById('frame2');
+				
+					if(event.target.id == "aba1" || event.target.id == "aba-cadastro"){
+					
+						aba1.style.backgroundColor = "lightgrey";
+						aba1.style.borderBottomColor = "lime";
+						frame1.style.display = "block";
+						
+						aba2.style.backgroundColor = "grey";
+						aba2.style.borderBottomColor = "green";
+						frame2.style.display = "none";
+						
+					}
+					else if(event.target.id == "aba2" || event.target.id == "aba-parametros"){
+					
+						aba1.style.backgroundColor = "grey";
+						aba1.style.borderBottomColor = "green";
+						frame1.style.display = "none";
+						
+						aba2.style.backgroundColor = "lightgrey";
+						aba2.style.borderBottomColor = "lime";
+						frame2.style.display = "block";
+					}
+				}
+			}
+			function selecionarTipoCadastro(){
+				
+					var cadastroPf = document.getElementById('cadastro-pf');
+					var cadastroPj = document.getElementById('cadastro-pj');
+					var pessoaFisica = document.getElementById('pessoa-fisica');
+					var pessoaJuridica = document.getElementById('pessoa-juridica');
+					
+					if(cadastroPf.checked){
+						pessoaFisica.style.display = 'block';
+						pessoaJuridica.style.display = 'none';
+						limpaStatus();
+					}
+					else if(cadastroPj.checked){
+						pessoaFisica.style.display = 'none';
+						pessoaJuridica.style.display = 'block';
+						limpaStatus();
+					} 
+			}
+			function validaForm(){
+			
+				var mensagemCadastro = document.getElementById('mensagem-cadastro');
+				var valida = true;
+				var confirma = true;
+				
+				if(mensagemCadastro.checked){
+					confirma = confirm("Deseja cadastrar as informações");
+					if(!confirma) 
+						valida = false;
+				}
+				
+				if(confirma){
+			
+					var nome  = document.getElementById('nome');
+					var cpf = document.getElementById('cpf');
+					var statusNome = document.getElementById('status-nome');
+					var statusCpf = document.getElementById('status-cpf');
+					
+					var nomeFantasia  = document.getElementById('nome-fantasia');
+					var razaoSocial  = document.getElementById('razao-social');
+					var cnpj = document.getElementById('cnpj');
+					var statusNomeFantasia = document.getElementById('status-nome-fantasia');
+					var statusRazaoSocial = document.getElementById('status-razao-social');
+					var statusCnpj = document.getElementById('status-cnpj');
+					
+					var telefone = document.getElementById('telefone');
+					var celular = document.getElementById('celular');
+					var email = document.getElementById('email');
+					var statusTelefone = document.getElementById('status-telefone');
+					var statusCelular = document.getElementById('status-celular');
+					var statusEmail = document.getElementById('status-email');
+					
+					var cadastroPf = document.getElementById('cadastro-pf');
+					var cadastroPj = document.getElementById('cadastro-pj');
+					var mensagemInfo = document.getElementById('mensagem-info');
+					var labelInfo = document.getElementById('label-info');   
+					
+					var nomeObrigatorio = 'Nome é obrigatório!';
+					var cpfObrigatorio = 'CPF é obrigatório!';
+					var cpfInvalido = 'CPF Inválido!';
+					var nomeFantasiaObrigatorio = 'Nome Fantasia é obrigatório!';
+					var razaoSocialObrigatorio = 'Razão Social é obrigatória!';
+					var cnpjObrigatorio = 'CNPJ é obrigatório!';
+					var cnpjInvalido = 'CNPJ inválido!';
+					var telefoneInvalido = 'Formato de telefone é inválido!';
+					var celularInvalido = 'Formato de celular é inválido!';
+					var emailInvalido = 'Formato de e-mail é inválido!';
+					var contatoObrigatorio = 'É obrigatório pelo menos uma forma de contato! (Telefone, Celular ou E-mail)';
+					
+					var msg = "Pendências no cadastro: ";
+				
+					limpaStatus();
+					
+					if(cadastroPf.checked){
+					
+						if(nome.value === ""){
+							if(mensagemInfo.checked)
+								msg += "\n - " + nomeObrigatorio;
+							if(labelInfo.checked)
+								statusNome.innerHTML = nomeObrigatorio;
+							valida = false;
+						}
+						
+						if(cpf.value === ""){
+							if(mensagemInfo.checked)
+								msg += "\n - " + cpfObrigatorio;
+							if(labelInfo.checked)
+								statusCpf.innerHTML = cpfObrigatorio;
+							valida = false;
+						}
+						else{
+							if(!validaCpf(cpf.value)){
+								if(mensagemInfo.checked)
+									msg += "\n - " + cpfInvalido;
+								if(labelInfo.checked)
+									statusCpf.innerHTML = cpfInvalido;
+								valida = false;
+							}
+						}
+						
+					}
+					else if(cadastroPj.checked){
+					
+						if(nomeFantasia.value === ""){
+							if(mensagemInfo.checked)
+								msg += "\n - " + nomeFantasiaObrigatorio;
+							if(labelInfo.checked)
+								statusNomeFantasia.innerHTML = nomeFantasiaObrigatorio;
+							valida = false;
+						}
+						if(razaoSocial.value === ""){
+							if(mensagemInfo.checked)
+								msg += "\n - " + razaoSocialObrigatorio;
+							if(labelInfo.checked)
+								statusRazaoSocial.innerHTML = razaoSocialObrigatorio;
+							valida = false;
+						}
+						if(cnpj.value === ""){
+							if(mensagemInfo.checked)
+								msg += "\n - " + cnpjObrigatorio;
+							if(labelInfo.checked)
+								statusCnpj.innerHTML = cnpjObrigatorio;
+							valida = false;
+						}
+						else{
+							if(!validaCnpj(cnpj.value)){
+								if(mensagemInfo.checked)
+									msg += "\n - " + cnpjInvalido;
+								if(labelInfo.checked)
+									statusCnpj.innerHTML = cnpjInvalido;
+								valida = false;
+							}
+						}
+					
+					}
+					if(((telefone.value === "") && (celular.value === "")) && (email.value === "")){
+						if(mensagemInfo.checked)
+							msg += "\n - " + contatoObrigatorio;
+						if(labelInfo.checked){
+							statusTelefone.innerHTML = contatoObrigatorio;
+							statusCelular.innerHTML = contatoObrigatorio;
+							statusEmail.innerHTML = contatoObrigatorio;
+						}
+						valida = false;
+					}
+					else{
+						if(telefone.value !== ""){
+							if(!validaTelefone(telefone.value)){
+								if(mensagemInfo.checked)
+									msg += "\n - " + telefoneInvalido;
+								if(labelInfo.checked)
+									statusTelefone.innerHTML = telefoneInvalido;
+								valida = false;
+							}
+						}
+						if(celular.value !== ""){
+							if(!validaCelular(celular.value)){
+								if(mensagemInfo.checked)
+									msg += "\n - " + celularInvalido;
+								if(labelInfo.checked)
+									statusCelular.innerHTML = celularInvalido;
+								valida = false;
+							}
+						}
+						if(email.value !== ""){
+							if(!validaEmail(email.value)){
+								if(mensagemInfo.checked)
+									msg += "\n - " + emailInvalido;
+								if(labelInfo.checked)
+									statusEmail.innerHTML = emailInvalido;
+								valida = false;
+							}
+						}
+					}
+					if(mensagemInfo.checked){
+						if(!valida)
+							alert(msg);
+					}
+				
+					if(valida){
+						var formularioCadastro = document.getElementById('form-cadastro');
+						var formularioConsulta = document.getElementById('form-consulta');
+						formularioCadastro.style.display = 'none';
+						formularioConsulta.style.display = 'block';
+						if(cadastroPf.checked){
+							document.getElementById('label-nome').innerHTML = "Nome: " + nome.value;
+							document.getElementById('label-cpf').innerHTML = "CPF: " + cpf.value;
+						}
+						else if(cadastroPj.checked){
+							document.getElementById('label-nome-fantasia').innerHTML = "Nome Fantasia: " + nomeFantasia.value;
+							document.getElementById('label-razao-social').innerHTML = "Razão Social: " + razaoSocial.value;
+							document.getElementById('label-cnpj').innerHTML = "CNPJ: " + cnpj.value;
+						}
+						document.getElementById('label-telefone').innerHTML = "Telefone: " + telefone.value;
+						document.getElementById('label-celular').innerHTML = "Celular: " + celular.value;
+						document.getElementById('label-email').innerHTML = "E-mail: " + email.value;
+						var autoriza = document.getElementById('autorizacao').checked;
+						var resultado = "";
+						if(autoriza){
+							resultado = "Sim";
+						}
+						else{
+							resultado = "Não";
+						}
+						document.getElementById('label-autorizacao').innerHTML = 'Cliente autoriza envio de informações por E-mail: ' + resultado;
+						valida = false;
+					}
+				}
+				return valida;
+			}
+			function retornaFormulario(){
+				var formularioCadastro = document.getElementById('form-cadastro');
+				var formularioConsulta = document.getElementById('form-consulta');
+				formularioCadastro.style.display = 'block';
+				formularioConsulta.style.display = 'none';
+				document.getElementById('label-nome').innerHTML = '';
+				document.getElementById('label-cpf').innerHTML = '';
+				document.getElementById('label-nome-fantasia').innerHTML = '';
+				document.getElementById('label-razao-social').innerHTML = '';
+				document.getElementById('label-cnpj').innerHTML = '';
+				document.getElementById('label-telefone').innerHTML = '';
+				document.getElementById('label-celular').innerHTML = '';
+				document.getElementById('label-email').innerHTML = '';
+				document.getElementById('label-autorizacao').innerHTML = '';
+				limpaCampos();
+			}
+			function limpaCampos(){
+			
+				let limparChecked = document.getElementById('mensagem-limpar').checked;
+				let limpar = true;
+				if(limparChecked){
+					limpar = confirm("Deseja limpar os campos?");
+				}
+				if(limpar){
+					document.getElementById('nome').value = "";
+					document.getElementById('cpf').value = "";
+					document.getElementById('telefone').value = "";
+					document.getElementById('celular').value = "";
+					document.getElementById('email').value = "";
+					document.getElementById('nome-fantasia').value = "";
+					document.getElementById('razao-social').value = "";
+					document.getElementById('cnpj').value = "";
+				}
+			}
+			function limpaStatus(){
+			
+				document.getElementById('status-nome').innerHTML = "";
+				document.getElementById('status-cpf').innerHTML = "";
+				document.getElementById('status-telefone').innerHTML = "";
+				document.getElementById('status-celular').innerHTML = "";
+				document.getElementById('status-email').innerHTML = "";
+				document.getElementById('status-nome-fantasia').innerHTML = "";
+				document.getElementById('status-razao-social').innerHTML = "";
+				document.getElementById('status-cnpj').innerHTML = "";
+
+			}
+			function validaCelular(celular){
+			var res = celular.match(/[\(][0-9]{2}[\)][9][0-9]{4}[\-][0-9]{4}$/g);
+			if(res === null)
+				return false;
+			else
+				return true;
+		    }
+			function validaTelefone(telefone){
+				var res = telefone.match(/[\(][0-9]{2}[\)][0-9]{4}[\-][0-9]{4}$/g);
+				if(res === null)
+					return false;
+				else
+					return true;
+			}
+			function validaEmail(email){
+				var res = email.match(/^([\w\-]+\.)*[\w\- ]+@([\w\- ]+\.)+([\w\-]{2,3})$/g);
+				if(res === null)
+					return false;
+				else
+					return true;
+			}
+			function validaCpf(cpf){
+			
+				cpf = cpf.toString();
+				cpf = cpf.replace(/[^0-9]/g, '');
+			
+				if(cpf.length != 11)
+					return false;
+				
+				var rep = 0;
+				for(var r = 0; r < 10; r++){
+					if(cpf.substr(r,1) === cpf.substr(10,1))
+						rep += 1;
+					if(rep === 10)
+						return false;
+				}
+				
+				var soma = 0;
+				var valida = false;
+				var peso_mult1 = [10,9,8,7,6,5,4,3,2];
+				var peso_mult2 = [11,10,9,8,7,6,5,4,3,2];
+				
+				for(var i = 0; i < 9; i++)
+					soma += peso_mult1[i] * parseInt(cpf.substr(i,1));
+				
+				var resto = soma % 11;
+				if(resto < 2)
+					resto = 0;
+				else
+					resto = 11 - resto;
+				
+				var digito = resto.toString();
+				var parc_cpf = cpf.substr(0,9) + digito;
+				soma = 0;
+				
+				for(var j = 0; j < 10; j++)
+					soma += peso_mult2[j] * parseInt(parc_cpf.substr(j,1));
+				
+				resto = soma % 11;
+				if(resto < 2)
+					resto = 0;
+				else
+					resto = 11 - resto;
+				
+				digito += resto.toString();
+				if(cpf.substr(9,2) === digito)
+					valida = true;
+
+				return valida;
+			}
+			function validaCnpj(cnpj){
+
+				cnpj = cnpj.toString();
+				cnpj = cnpj.replace(/[^0-9]/g, '');
+				
+				if(cnpj.length != 14){
+					return false;
+				}
+				
+				var rep = 0;
+				for(var r = 0; r < 13; r++){
+					if(cnpj.substr(r,1) === cnpj.substr(13,1)){
+						rep += 1;
+					}
+					if(rep === 13){
+						return false;
+					}
+				}
+				
+				var soma = 0;
+				var valida = false;
+				var peso_mult1 = [5,4,3,2,9,8,7,6,5,4,3,2];
+				var peso_mult2 = [6,5,4,3,2,9,8,7,6,5,4,3,2];
+				
+				for(var i = 0; i < 12; i++){
+					soma += peso_mult1[i] * parseInt(cnpj.substr(i,1));
+				}
+
+				var resto = soma % 11;
+				if(resto < 2){
+					resto = 0;
+				}
+				else{
+					resto = 11 - resto;
+				}
+				
+				var digito = resto.toString();
+				var parc_cnpj = cnpj.substr(0,12) + digito;
+				soma = 0;
+				
+				for(var j = 0; j < 13; j++){
+					soma += peso_mult2[j] * parseInt(parc_cnpj.substr(j,1));
+				}
+				
+				resto = soma % 11;
+				if(resto < 2){
+					resto = 0;
+				}
+				else{
+					resto = 11 - resto;
+				}
+				
+				digito += resto.toString();
+				if(cnpj.substr(12,2) === digito){
+					valida = true;
+				}
+				return valida;
+			}
+			function mascaraTelefone(){
+				var telefone = document.getElementById('telefone').value;
+				telefone = telefone.toString();
+				telefone = telefone.replace(/[^0-9]/g, '');
+				var mascara = "(" + telefone.substring(0,2) + ")";
+				mascara += telefone.substring(2,6) + "-";
+				mascara += telefone.substring(6,10);
+				if(mascara.replace(/[^0-9]/g, '') !== ""){
+					document.getElementById('telefone').value = mascara;
+				}
+				else{
+					document.getElementById('telefone').value = "";
+				}
+			}
+			function mascaraCelular(){
+				var celular = document.getElementById('celular').value;
+				celular = celular.toString();
+				celular = celular.replace(/[^0-9]/g, '');
+				var mascara = "(" + celular.substring(0,2) + ")";
+				mascara += celular.substring(2,7) + "-";
+				mascara += celular.substring(7,11);
+				document.getElementById('celular').value = mascara;
+				if(mascara.replace(/[^0-9]/g, '') !== ""){
+					document.getElementById('celular').value = mascara;
+				}
+				else{
+					document.getElementById('celular').value = "";
+				}
+			}
+			function mascaraCpf(){
+				var cpf = document.getElementById('cpf').value;
+				cpf = cpf.toString();
+				cpf = cpf.replace(/[^0-9]/g, '');
+				var mascara = cpf.substring(0,3) + ".";
+				mascara += cpf.substring(3,6) + ".";
+				mascara += cpf.substring(6,9)+ "-";
+				mascara += cpf.substring(9,11);
+				document.getElementById('cpf').value = mascara;
+				if(mascara.replace(/[^0-9]/g, '') !== ""){
+					document.getElementById('cpf').value = mascara;
+				}
+				else{
+					document.getElementById('cpf').value = "";
+				}
+			}
+			function mascaraCnpj(){
+				var cnpj = document.getElementById('cnpj').value;
+				cnpj = cnpj.toString();
+				cnpj = cnpj.replace(/[^0-9]/g, '');
+				var mascara = cnpj.substring(0,2) + ".";
+				mascara += cnpj.substring(2,5) + ".";
+				mascara += cnpj.substring(5,8)+ "/";
+				mascara += cnpj.substring(8,12) + "-";
+				mascara += cnpj.substring(12,14);
+				document.getElementById('cnpj').value = mascara;
+				if(mascara.replace(/[^0-9]/g, '') !== ""){
+					document.getElementById('cnpj').value = mascara;
+				}
+				else{
+					document.getElementById('cnpj').value = "";
+				}
+			}
+		</script>
+	</head>
+	<body>
+		<div id="container">
+			<div id="reader">
+				<h1>Cadastro Único</h1>
+			</div>
+			<div id="body">
+				<div id="aba1" class="aba" onclick="apresentaAba();">
+					<small id="aba-cadastro" onclick="apresentaAba();">Cadastro</small>
+				</div>
+				<div id="aba2" class="aba" onclick="apresentaAba();">
+					<small id="aba-parametros" onclick="apresentaAba();">Parâmetros</small>
+				</div>
+				<div id="frame1" class="frame">
+					<h2>Cadastro de Cliente</h2>
+					<form id="form-cadastro" class="formulario" method="post" action="prototipo_cadastro.html" onSubmit="return validaForm()">
+						<fieldset class="radiogroup" id="rg-tipo-cadastro">
+							<legend>Tipo de cadastro:</legend> 
+							<label class="container-radio-button">Pessoa Física
+								<input type="radio" name="tipo" id="cadastro-pf" class="radio-button" onclick="selecionarTipoCadastro();" value="Pessoa Física" checked="true" />
+								<span class="checkmark" id="radio1"></span>
+							</label>
+							<label class="container-radio-button">Pessoa Jurídica
+								<input type="radio" name="tipo" id="cadastro-pj" class="radio-button" onclick="selecionarTipoCadastro();" value="Pessoa Jurídica"/>
+								<span class="checkmark" id="radio2"></span>
+							</label>
+						</fieldset> 
+						<div id="pessoa-fisica">
+							<label for="nome" class="label-texto">Nome</label>
+							<input type="text" id="nome" class="caixa-texto" placeholder="Ex: João Batista"></input>
+							<label id="status-nome" class="label-status"></label>
+							<label for="cpf" class="label-texto">CPF</label>
+							<input type="text" id="cpf" class="caixa-texto" placeholder="000.000.000-00" onchange="mascaraCpf();"></input>
+							<label id="status-cpf" class="label-status"></label>
+						</div>
+						<div id="pessoa-juridica">
+							<label for="nome" class="label-texto">Nome Fantasia</label>
+							<input type="text" id="nome-fantasia" class="caixa-texto" placeholder="Ex: Contabil X"></input>
+							<label id="status-nome-fantasia" class="label-status"></label>
+							<label for="razao-social" class="label-texto">Razão Social</label>
+							<input type="text" id="razao-social" class="caixa-texto" placeholder="Contabil X Serviços Ltda."></input>
+							<label id="status-razao-social" class="label-status"></label>
+							<label for="cnpj" class="label-texto">CNPJ</label>
+							<input type="text" id="cnpj" class="caixa-texto" placeholder="00.000.000/0000-00" onchange="mascaraCnpj();"></input>
+							<label id="status-cnpj" class="label-status"></label>
+						</div>
+						<label for="telefone" class="label-texto">Telefone</label>
+						<input type="text" id="telefone" class="caixa-texto" placeholder="(00)0000-0000" onchange="mascaraTelefone();"></input>
+						<label id="status-telefone" class="label-status"></label>
+						<label for="celular" class="label-texto">Celular</label>
+						<input type="text" id="celular" class="caixa-texto" placeholder="(00)00000-0000" onchange="mascaraCelular();"></input>
+						<label id="status-celular" class="label-status"></label>
+						<label for="email" class="label-texto">E-mail</label>
+						<input type="text" id="email" class="caixa-texto" placeholder="Ex: joao.batista@cadastro.com"></input>
+						<label id="status-email" class="label-status"></label>
+						<br />
+						<br />
+						<label class="container-checkbox">Cliente autoriza envio de informações por E-mail.
+						  <input type="checkbox" id="autorizacao"/>
+						  <span class="checkmark"></span>
+						</label>
+						<input type="submit" value="Cadastrar" id="cadastrar" class="btform" />
+						<input type="button" value="Limpar" id="limpar" class="btform" onclick="limpaCampos();"/>
+					</form>
+					<form id="form-consulta" class="formulario" >
+						<label id="label-nome" class="label-texto"></label>
+						<label id="label-cpf" class="label-texto"></label>
+						<label id="label-nome-fantasia" class="label-texto"></label>
+						<label id="label-razao-social" class="label-texto"></label>
+						<label id="label-cnpj" class="label-texto"></label>
+						<label id="label-telefone" class="label-texto"></label>
+						<label id="label-celular" class="label-texto"></label>
+						<label id="label-email" class="label-texto"></label>
+						<label id="label-autorizacao" class="label-texto"></label>
+						<br />
+						<br />
+						<input type="button" value="Voltar" id="voltar" class="btform" onclick="retornaFormulario();"/>
+					</form>
+				</div>
+				<div id="frame2" class="frame">
+					<h2>Parâmetros do Cadastro</h2>
+					<form id="form-parametros" class="formulario"></form>
+						<fieldset class="radiogroup" id="rg-mensagem-inconsistencia">
+							<legend>Mensagem de Inconsistência:</legend> 
+							<label class="container-radio-button">Apresentar caixa de dialogo.
+								<input type="radio" name="tipo" id="mensagem-info" class="radio-button" value="Pessoa Física" checked="true" />
+								<span class="checkmark" id="radio3"></span>
+							</label>
+							<label class="container-radio-button">Apresentar label informativa.
+								<input type="radio" name="tipo" id="label-info" class="radio-button" value="Pessoa Jurídica"/>
+								<span class="checkmark" id="radio4"></span>
+							</label>
+						</fieldset>
+						<br />
+						<br />
+						<fieldset class="checkboxgroup" id="rg-mensagem-confirmacao">
+						<legend>Mensagens de Confirmação:</legend> 
+							<label class="container-checkbox">Apresentar mensagem de confirmação de Cadastro.
+							  <input type="checkbox" id="mensagem-cadastro"/>
+							  <span class="checkmark"></span>
+							</label>
+							<label class="container-checkbox">Apresentar mensagem de confirmação antes de limpar o campos.
+							  <input type="checkbox" id="mensagem-limpar"/>
+							  <span class="checkmark"></span>
+							</label>
+						</fieldset>
+					</form>	
+				</div>
+			</div>
+			<div id="footer">
+				<br />
+				<small>Prototipo Cadastro - 2019 - 2020</small><br />
+				<small>Desenvolvido por Marcos Willian de Souza | E-mail: marcosws@ymail.com</small><br />
+			</div>
+		</div>
+	</body>
+</html>
